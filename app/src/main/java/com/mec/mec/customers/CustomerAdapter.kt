@@ -1,0 +1,41 @@
+package com.mec.mec.customers
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.mec.mec.R
+import com.mec.mec.ui.model.Customer
+
+class CustomerAdapter(
+    private var customers: List<Customer>,
+    private val onItemClick: (Customer) -> Unit
+) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
+
+    inner class CustomerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+        private val locationTextView: TextView = itemView.findViewById(R.id.locationTextView)
+
+        fun bind(customer: Customer) {
+            nameTextView.text = customer.customerName
+            locationTextView.text = customer.customerLocation
+            itemView.setOnClickListener { onItemClick(customer) }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_customer, parent, false)
+        return CustomerViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
+        holder.bind(customers[position])
+    }
+
+    override fun getItemCount(): Int = customers.size
+
+    fun updateCustomers(newCustomers: List<Customer>) {
+        customers = newCustomers
+        notifyDataSetChanged()
+    }
+}

@@ -1,0 +1,12 @@
+<!-- res/drawable/rounded_bottom_nav.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/darkNavy" />
+    <corners
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="16dp" />
+    <padding
+        android:left="4dp"
+        android:top="0dp"
+        android:right="4dp"
+        android:bottom="4dp" />
+</shape>

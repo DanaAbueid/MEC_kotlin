@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/streamline__information_desk_customer"
+        android:title="@string/title_Customer" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/pajamas__issue_type_maintenance"
+        android:title="@string/title_Maintenance" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/clarity__employee_line"
+        android:title="@string/title_employee" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/carbon__settings"
+        android:title="@string/title_settings" />
+
+</menu>

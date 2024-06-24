@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/darkNavy"
+        app:tabSelectedTextColor="@color/darkNavy"
+        app:tabTextColor="@color/blueNavy"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="49dp">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Approved" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Approved" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_maintenance_list"
+        android:layout_width="408dp"
+        android:layout_height="542dp"
+        android:paddingHorizontal="10dp"
+        tools:layout_editor_absoluteY="192dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:layout_width="69dp"
+        android:layout_height="58dp"
+        android:contentDescription="Add"
+        android:contextClickable="false"
+        android:screenReaderFocusable="false"
+        android:tint="@color/white"
+        android:tooltipText="add"
+        app:backgroundTint="@color/blueNavy"
+        app:backgroundTintMode="src_over"
+        app:rippleColor="@color/white"
+        app:srcCompat="@drawable/material_symbols__add"
+        tools:layout_editor_absoluteX="327dp"
+        tools:layout_editor_absoluteY="573dp" />
+
+    <Button
+        android:id="@+id/date_button"
+        style="@style/genericButton"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+        android:background="@drawable/f7__calendar_today"
+        android:clickable="true"
+        tools:layout_editor_absoluteX="335dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="303dp"
+        android:layout_height="49dp"
+        android:alpha="1"
+        android:background="@drawable/search_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="114dp">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="Search Customer"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="4dp"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/darkNavy"
+            android:textColorHint="@color/semiGray"
+            android:textSize="18sp"
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:contentDescription="@string/search"
+            android:src="@drawable/ic_baseline_person_24"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

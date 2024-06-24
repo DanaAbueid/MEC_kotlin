@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.mec.mec.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.mec.mec.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.mec.mec.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/customer_list"
+        android:name="com.mec.mec.customers.CustomerFragment"
+        android:label="customer"
+        tools:layout="@layout/fragment_customer" >
+
+        <action
+            android:id="@+id/action_customerFragment_to_customerDetailFragment"
+            app:destination="@id/customer_info" /> <!-- Replace with your actual destination fragment ID -->
+        <action
+            android:id="@+id/action_customerFragment_to_addCustomerFragment"
+            app:destination="@id/customer_add" /> <!-- Replace with your actual destination fragment ID -->
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/customer_add"
+        android:name="com.mec.mec.customers.CustomerFragment"
+        android:label="customer"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_customer_list"
+            app:destination="@id/customer_list" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/customer_info"
+        android:name="com.mec.mec.customers.CustomerFragment"
+        android:label="customer"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
+            app:destination="@id/customer_list" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mec.mec.customers.CustomerFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/fragment_login" />
+
+
+</navigation>
