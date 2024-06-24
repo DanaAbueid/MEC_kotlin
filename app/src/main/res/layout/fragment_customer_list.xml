@@ -15,8 +15,8 @@
 
     <LinearLayout
         android:id="@+id/searchLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="390dp"
+        android:layout_height="59dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
@@ -33,12 +33,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="@string/search"
+            android:hint="@string/search_customer"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
             android:padding="8dp"
-            android:textColorHint="#4E342E"
+            android:textColorHint="@color/semiGray"
             tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
 
         <ImageButton

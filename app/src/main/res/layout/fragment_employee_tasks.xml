@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/darkNavy"
+        app:tabSelectedTextColor="@color/darkNavy"
+        app:tabTextColor="@color/blueNavy">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/approved" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_approved" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_maintenance_list"
+        android:layout_width="408dp"
+        android:layout_height="542dp"
+        android:layout_marginTop="30dp"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:layout_width="69dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="327dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="Add"
+        android:contextClickable="false"
+        android:screenReaderFocusable="false"
+        android:tint="@color/white"
+        android:tooltipText="add"
+        app:backgroundTint="@color/blueNavy"
+        app:backgroundTintMode="src_over"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/white"
+        app:srcCompat="@drawable/material_symbols__add" />
+
+    <Button
+        android:id="@+id/date_button"
+        style="@style/genericButton"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/f7__calendar_today"
+        android:clickable="true"
+        android:contentDescription="@string/search"
+        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="303dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
+        android:alpha="1"
+        android:background="@drawable/search_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
+        app:layout_constraintEnd_toStartOf="@+id/date_button"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/search_customer"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="4dp"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/darkNavy"
+            android:textColorHint="#546E7A"
+            android:textSize="18sp"
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:contentDescription="@string/search"
+            android:src="@drawable/ic_baseline_person_24"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
