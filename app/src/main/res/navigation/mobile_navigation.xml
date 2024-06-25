@@ -19,7 +19,7 @@
 
         <action
             android:id="@+id/action_loginFragment_to_userMyActivityFragment"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/customer_list" />
     </fragment>
 
 
@@ -66,9 +66,6 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_customer" >
-        <argument
-            android:name="customer"
-            app:argType="array" />
 
         <action
             android:id="@+id/action_customerFragment_to_customerDetailFragment"
@@ -85,9 +82,7 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_dashboard" >
-        <argument
-            android:name="customer"
-            app:argType="array" />
+
 
         <action
             android:id="@+id/action_dashboard_to_customer_list"
@@ -100,9 +95,7 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_dashboard" >
-        <argument
-            android:name="customer"
-            app:argType="array" />
+
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
             app:destination="@id/customer_list" />

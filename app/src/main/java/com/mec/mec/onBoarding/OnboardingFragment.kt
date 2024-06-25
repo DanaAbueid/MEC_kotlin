@@ -12,8 +12,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mec.mec.R
+import com.mec.mec.generic.BaseFragment
 
-class OnboardingFragment : Fragment() {
+class OnboardingFragment : BaseFragment() {
+    override fun isLoggedin(): Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
