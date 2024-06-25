@@ -84,5 +84,6 @@
   <string name="not_approved">Not Approved</string>
   <string name="search_customer">Search Customer</string>
   <string name="approved">Approved</string>
+  <string name="done">Done</string>
 
 </resources>
