@@ -26,9 +26,9 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val images = listOf(
-            R.drawable.pic1,
-            R.drawable.pic1,
-            R.drawable.pic1
+            R.drawable.pic2,
+            R.drawable.pic6,
+            R.drawable.pic4
         )
 
         val headlines = listOf(

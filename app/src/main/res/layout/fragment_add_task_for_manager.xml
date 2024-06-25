@@ -311,17 +311,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"
-            android:layout_width="343dp"
-            android:layout_height="43dp"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="Management Approval"
             android:textAlignment="center"
             android:textColor="@color/darkNavy"
-            android:textSize="24sp"
+            android:textSize="18sp"
+            app:switchMinWidth="56dp"
+            app:thumbTint="@color/blueNavy"
+            app:trackTint="@color/lightGray"
+            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize"
             tools:layout_editor_absoluteX="21dp"
-            tools:layout_editor_absoluteY="757dp"
-            tools:ignore="VisualLintButtonSize" />
+            tools:layout_editor_absoluteY="749dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

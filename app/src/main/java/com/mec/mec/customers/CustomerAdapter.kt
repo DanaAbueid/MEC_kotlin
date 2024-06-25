@@ -13,8 +13,8 @@ class CustomerAdapter(
 ) : RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     inner class CustomerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        private val locationTextView: TextView = itemView.findViewById(R.id.locationTextView)
+        private val nameTextView: TextView = itemView.findViewById(R.id.tv_name)
+        private val locationTextView: TextView = itemView.findViewById(R.id.tv_location)
 
         fun bind(customer: Customer) {
             nameTextView.text = customer.customerName
@@ -24,7 +24,7 @@ class CustomerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_customer, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_cell_item, parent, false)
         return CustomerViewHolder(view)
     }
 

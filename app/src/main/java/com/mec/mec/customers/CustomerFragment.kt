@@ -27,7 +27,7 @@ class CustomerFragment : Fragment(R.layout.fragment_customer) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_health_food)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_customer_list)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         customerAdapter = CustomerAdapter(emptyList()) { customer ->
             val action = CustomerFragmentDirections.actionCustomerFragmentToCustomerDetailFragment(customer)

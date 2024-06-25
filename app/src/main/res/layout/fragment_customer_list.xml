@@ -30,7 +30,7 @@
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/search_customer"
@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_health_food"
+        android:id="@+id/rv_customer_list"
         android:layout_width="411dp"
         android:layout_height="600dp"
         android:layout_marginTop="16dp"

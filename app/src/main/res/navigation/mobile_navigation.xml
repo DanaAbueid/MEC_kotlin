@@ -3,13 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mec.mec.ui.auth.LoginFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_user_nutrition_centers" >
+        <action
+            android:id="@+id/action_loginFragment_to_signupUpUserFragment"
+            app:destination="@id/signup_fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forget_password" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_userMyActivityFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+
+
+
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.mec.mec.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/forget_password"
+        android:name="com.mec.mec.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/signup_fragment"
+        android:name="com.mec.mec.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+
+
+
+
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -28,6 +66,9 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_customer" >
+        <argument
+            android:name="customer"
+            app:argType="array" />
 
         <action
             android:id="@+id/action_customerFragment_to_customerDetailFragment"
@@ -44,6 +85,10 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_dashboard" >
+        <argument
+            android:name="customer"
+            app:argType="array" />
+
         <action
             android:id="@+id/action_dashboard_to_customer_list"
             app:destination="@id/customer_list" />
@@ -55,6 +100,9 @@
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_dashboard" >
+        <argument
+            android:name="customer"
+            app:argType="array" />
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
             app:destination="@id/customer_list" />
@@ -72,10 +120,34 @@
     </fragment>
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.mec.mec.customers.CustomerFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/maintenanceFragment"
+        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 
 </navigation>

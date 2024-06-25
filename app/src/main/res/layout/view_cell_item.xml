@@ -14,15 +14,15 @@
 
         <ImageView
             android:id="@+id/iv_bg"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="83dp"
+            android:layout_height="47dp"
             android:layout_marginVertical="20dp"
             android:layout_marginEnd="10dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/blueNavy" />
+            tools:src="@color/white" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -78,6 +78,7 @@
             android:textColor="@color/darkNavy"
             android:textSize="13sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
             app:drawableTint="@color/darkNavy"
             app:layout_constraintBottom_toBottomOf="parent"
