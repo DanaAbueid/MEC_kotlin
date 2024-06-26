@@ -27,41 +27,28 @@ class CustomerFragment : BaseFragment() {
     private lateinit var customerAdapter: CustomerAdapter
     private val viewModel: CustomerViewModel by viewModels()
     override fun isLoggedin(): Boolean = true
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCustomerBinding.inflate(inflater, container, false)
-        return binding?.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_customer_list)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        customerAdapter = CustomerAdapter(emptyList()) { customer ->
-            val action = CustomerFragmentDirections.actionCustomerFragmentToCustomerDetailFragment(/*customer*/)
-            findNavController().navigate(action)
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            binding = FragmentCustomerBinding.inflate(inflater, container, false)
+            return binding?.root
         }
-        recyclerView.adapter = customerAdapter
 
-        val searchEditText: EditText = view.findViewById(R.id.searchEditText)
-        searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                viewModel.searchCustomers(s.toString())
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            val recyclerView = view.findViewById<RecyclerView>(R.id.rv_customer_list)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            customerAdapter = CustomerAdapter(emptyList()) { customer ->
+                // Handle item click if necessary
             }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
+            recyclerView.adapter = customerAdapter
 
-        view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            findNavController().navigate(R.id.action_customerFragment_to_addCustomerFragment)
+            viewModel.customers.observe(viewLifecycleOwner) { customers ->
+                customerAdapter.updateCustomers(customers)
+            }
         }
-
-        viewModel.customers.observe(viewLifecycleOwner, { customers ->
-            customerAdapter.updateCustomers(customers)
-        })
     }
-}

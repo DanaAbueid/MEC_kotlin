@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.mec.mec.ui.API.RetrofitInstance
 import kotlinx.coroutines.launch
 import com.mec.mec.ui.model.Customer
+import android.util.Log
+
 
 class CustomerViewModel : ViewModel() {
 
@@ -20,19 +22,12 @@ class CustomerViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val customers = RetrofitInstance.api.getCustomers()
-                _customers.value = customers
+                Log.d("CustomerViewModel", "Customers fetched successfully: $customers")
+                _customers.postValue(customers)
             } catch (e: Exception) {
-                // Handle the exception
+                Log.e("CustomerViewModel", "Error fetching customers", e)
+                e.printStackTrace()
             }
-        }
-    }
-
-    fun searchCustomers(query: String) {
-        _customers.value?.let {
-            val filteredList = it.filter { customer ->
-                customer.customerName.contains(query, ignoreCase = true)
-            }
-            _customers.value = filteredList
         }
     }
 }

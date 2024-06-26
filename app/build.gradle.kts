@@ -54,6 +54,7 @@ dependencies {
     implementation("com.intuit.sdp:sdp-android:1.0.6")
     implementation("com.intuit.ssp:ssp-android:1.0.6")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
