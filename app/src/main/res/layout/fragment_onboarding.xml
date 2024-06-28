@@ -15,15 +15,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        app:tabIndicatorFullWidth="false"
-        app:tabIndicatorColor="@color/teal_200" />
+        app:tabIndicatorColor="@color/darkNavy"
+        app:tabIndicatorFullWidth="false" />
 
     <Button
         android:id="@+id/btnGetStarted"
+        style="@style/genericButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Started"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:visibility="gone"/> <!-- Initially hidden -->
+        android:background="@drawable/button_background"
+        android:text="@string/get_started"
+        android:visibility="gone" /> <!-- Initially hidden -->
 </LinearLayout>

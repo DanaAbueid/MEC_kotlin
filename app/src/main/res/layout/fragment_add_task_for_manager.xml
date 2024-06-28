@@ -33,16 +33,20 @@
             android:id="@+id/searchLayout"
             android:layout_width="369dp"
             android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/search_background"
             android:orientation="horizontal"
             android:padding="8dp"
-            tools:layout_editor_absoluteX="21dp"
-            tools:layout_editor_absoluteY="125dp">
+            app:layout_constraintBottom_toTopOf="@+id/til_Subject"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/search_customer"
@@ -88,7 +92,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:hint="Task Details"
-            app:layout_constraintBottom_toTopOf="@id/til_eelvator"
+            app:layout_constraintBottom_toTopOf="@id/til_customerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_Subject"
@@ -105,15 +109,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_eelvator"
+            android:id="@+id/til_customerName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="Customer Name"
-            app:layout_constraintBottom_toTopOf="@id/til_panel"
+            app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_Details"
-            app:startIconDrawable="@drawable/material_symbols__elevator_outline"
+            app:startIconDrawable="@drawable/hugeicons__user_list"
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -123,15 +127,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_panel"
+            android:id="@+id/til_employee_firstName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Employee Name"
-            app:layout_constraintBottom_toTopOf="@id/til_phone_number"
+            android:hint="Employee First Name"
+            app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_eelvator"
-            app:startIconDrawable="@drawable/fluent__panel_left_text_32_filled"
+            app:layout_constraintTop_toBottomOf="@id/til_customerName"
+            app:startIconDrawable="@drawable/clarity__employee_group_line"
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -141,16 +145,35 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_phone_number"
+            android:id="@+id/til_employee_lastName"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="Employee Last Name"
+            app:layout_constraintBottom_toTopOf="@id/til_managerNote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_employee_firstName"
+            app:startIconDrawable="@drawable/clarity__employee_group_line"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/genericMaterialTextInputEditText"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_managerNote"
             style="@style/genericEditText"
             android:layout_width="408dp"
             android:layout_height="137dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="Manager Note"
             android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/approval_switch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_panel">
+            app:layout_constraintTop_toBottomOf="@id/til_employee_lastName">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/genericMaterialTextInputEditText"
@@ -169,7 +192,7 @@
             app:layout_constraintBottom_toTopOf="@id/til_city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_phone_number">
+            app:layout_constraintTop_toBottomOf="@id/til_managerNote">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/mactv_country"
@@ -267,17 +290,23 @@
         <Button
             android:id="@+id/button_delete"
             style="@style/genericButton"
-            android:layout_width="136dp"
-            android:layout_height="43dp"
+            android:layout_width="218dp"
+            android:layout_height="49dp"
             android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="93dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/button_background"
-            android:text="@string/add_customer"
+            android:text="Add Task"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="normal"
-            tools:enabled="true"
-            tools:layout_editor_absoluteX="137dp"
-            tools:layout_editor_absoluteY="816dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/approval_switch"
+            tools:enabled="true" />
 
         <TextView
             android:id="@+id/til_headline"
@@ -320,12 +349,15 @@
             android:textAlignment="center"
             android:textColor="@color/darkNavy"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_managerNote"
             app:switchMinWidth="56dp"
             app:thumbTint="@color/blueNavy"
             app:trackTint="@color/lightGray"
             tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize"
-            tools:layout_editor_absoluteX="21dp"
-            tools:layout_editor_absoluteY="749dp" />
+            tools:layout_editor_absoluteX="4dp"
+            tools:layout_editor_absoluteY="811dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

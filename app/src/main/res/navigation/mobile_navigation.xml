@@ -79,7 +79,7 @@
 
     <fragment
         android:id="@+id/customer_add"
-        android:name="com.mec.mec.customers.CustomerFragment"
+        android:name="com.mec.mec.customers.AddCustomerFragment"
         android:label="customer"
         tools:layout="@layout/fragment_add_customer" >
 
@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/customer_info"
-        android:name="com.mec.mec.customers.CustomerFragment"
+        android:name="com.mec.mec.customers.CustomerInfoFragment"
         android:label="customer"
         tools:layout="@layout/fragment_customer_info" >
 
@@ -114,7 +114,7 @@
 
     <fragment
         android:id="@+id/maintenanceFragment"
-        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:name="com.mec.mec.maintenance.MaintenanceFragment"
         android:label="onboarding_fragment"
         tools:layout="@layout/fragment_maintenance">
         <action
