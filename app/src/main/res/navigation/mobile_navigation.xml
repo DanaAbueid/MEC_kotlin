@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.mec.mec.ui.auth.LoginFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_user_nutrition_centers" >
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signupUpUserFragment"
             app:destination="@id/signup_fragment" />
@@ -36,13 +36,13 @@
         android:id="@+id/forget_password"
         android:name="com.mec.mec.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_forgot_passwoerd" />
 
     <fragment
         android:id="@+id/signup_fragment"
         android:name="com.mec.mec.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_signup_user" />
 
 
 
@@ -81,7 +81,7 @@
         android:id="@+id/customer_add"
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_add_customer" >
 
 
         <action
@@ -94,7 +94,7 @@
         android:id="@+id/customer_info"
         android:name="com.mec.mec.customers.CustomerFragment"
         android:label="customer"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_customer_info" >
 
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
@@ -116,30 +116,51 @@
         android:id="@+id/maintenanceFragment"
         android:name="com.mec.mec.onBoarding.OnboardingFragment"
         android:label="onboarding_fragment"
-        tools:layout="@layout/fragment_onboarding">
+        tools:layout="@layout/fragment_maintenance">
         <action
-            android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_maintenanceFragment_to_item"
+            app:destination="@id/employeeTaskFragment" />
     </fragment>
+
 
     <fragment
         android:id="@+id/employeeFragment"
-        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:name="com.mec.mec.employee.EmployeeFragment"
         android:label="onboarding_fragment"
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/employeeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/employeeTaskFragment"
+        android:name="com.mec.mec.employee.EmployeeTasksFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_employee_tasks">
+        <action
+            android:id="@+id/action_maintenanceFragment_to_item"
+            app:destination="@id/employeeTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/employeeTaskListFragment"
+        android:name="com.mec.mec.employee.EmployeeTasksListFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_employee_tasks_list">
+        <action
+            android:id="@+id/action_maintenanceFragment_to_item"
             app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.mec.mec.onBoarding.OnboardingFragment"
+        android:name="com.mec.mec.generic.SettingsFragment"
         android:label="onboarding_fragment"
-        tools:layout="@layout/fragment_onboarding">
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/settingsFragment" />
     </fragment>
 
 
