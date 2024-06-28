@@ -15,6 +15,7 @@
             android:id="@+id/iv_header"
             android:layout_width="404dp"
             android:layout_height="143dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/rounded_filled_bg"
             app:layout_constraintBottom_toTopOf="@id/til_Subject"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -54,8 +55,8 @@
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:padding="8dp"
-                android:textColorHint="@color/semiGray"
-                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+                android:textColorHint="@color/darkNavy"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/searchButton"
@@ -71,7 +72,7 @@
             android:id="@+id/til_Subject"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Task Subject"
+            android:hint="@string/task_subject"
             app:layout_constraintBottom_toTopOf="@id/til_Details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +81,9 @@
             app:startIconDrawable="@drawable/fluent__task_list_24_filled"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText style="@style/genericMaterialTextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/genericMaterialTextInputEditText"
+                tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +94,7 @@
             android:layout_height="175dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
-            android:hint="Task Details"
+            android:hint="@string/task_details"
             app:layout_constraintBottom_toTopOf="@id/til_customerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +107,8 @@
                 android:layout_width="370dp"
                 android:layout_height="156dp"
                 android:gravity="center_vertical"
-                android:maxLines="0" />
+                android:maxLines="0"
+                tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +116,7 @@
             android:id="@+id/til_customerName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Customer Name"
+            android:hint="@string/customer_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +134,7 @@
             android:id="@+id/til_employee_firstName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Employee First Name"
+            android:hint="@string/employee_first_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +152,7 @@
             android:id="@+id/til_employee_lastName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Employee Last Name"
+            android:hint="@string/employee_last_name"
             app:layout_constraintBottom_toTopOf="@id/til_managerNote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,7 +172,7 @@
             android:layout_width="408dp"
             android:layout_height="137dp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Manager Note"
+            android:hint="@string/manager_note"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/approval_switch"
             app:layout_constraintEnd_toEndOf="parent"
@@ -298,7 +302,7 @@
             android:layout_marginEnd="93dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background"
-            android:text="Add Task"
+            android:text="@string/add_task"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="normal"
@@ -314,7 +318,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="7dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Add a new task"
+            android:text="@string/add_a_new_task"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -331,21 +335,22 @@
             android:layout_marginTop="80dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Sunday June 23"
+            android:text="@string/sunday_june_23"
             android:textAlignment="center"
             android:textColor="@color/blueNavy"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextSizeCheck" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Management Approval"
+            android:text="@string/management_approval"
             android:textAlignment="center"
             android:textColor="@color/darkNavy"
             android:textSize="18sp"

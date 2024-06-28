@@ -86,5 +86,16 @@
   <string name="approved">Approved</string>
   <string name="done">Done</string>
     <string name="get_started">Get Started</string>
+    <string name="task_details">Task Details</string>
+  <string name="task_subject">Task Subject</string>
+  <string name="sunday_june_23">Sunday June 23</string>
+  <string name="customer_name">Customer Name</string>
+  <string name="employee_first_name">Employee First Name</string>
+  <string name="employee_last_name">Employee Last Name</string>
+  <string name="add_a_new_task">Add a new task</string>
+  <string name="management_approval">Management Approval</string>
+  <string name="todo">TODO</string>
+  <string name="add_task">Add Task</string>
+  <string name="manager_note">Manager Note</string>
 
 </resources>
