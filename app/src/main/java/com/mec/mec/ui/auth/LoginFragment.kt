@@ -28,7 +28,7 @@ class LoginFragment : BaseFragment() {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignupUpUserFragment())
             }
             bindingNotNull.tvBecomePartner.setOnClickListener {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignupUpUserFragment())
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
             }
             bindingNotNull.buttonLogin.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToUserMyActivityFragment())

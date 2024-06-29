@@ -34,9 +34,9 @@
 
     <fragment
         android:id="@+id/forget_password"
-        android:name="com.mec.mec.ui.home.HomeFragment"
+        android:name="com.mec.mec.ui.auth.ForgotPasswordFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_forgot_passwoerd" />
+        tools:layout="@layout/fragment_forgot_password" />
 
     <fragment
         android:id="@+id/signup_fragment"
@@ -118,11 +118,27 @@
         android:label="onboarding_fragment"
         tools:layout="@layout/fragment_maintenance">
         <action
-            android:id="@+id/action_maintenanceFragment_to_item"
-            app:destination="@id/employeeTaskFragment" />
+            android:id="@+id/action_maintenanceFragment_to_employeeTaskFragment"
+            app:destination="@id/employeeTaskFragment">
+            <argument
+                android:name="task"
+                app:argType="com.mec.mec.maintenance.Task"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_maintenanceFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
     </fragment>
 
-
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.mec.mec.maintenance.AddTaskForManagerFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_add_task_for_manager">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/employeeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/employeeFragment"
         android:name="com.mec.mec.employee.EmployeeFragment"

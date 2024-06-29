@@ -1,12 +1,20 @@
 package com.mec.mec.ui.API
 import com.mec.mec.ui.model.Customer
+import com.mec.mec.ui.model.Task
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface ApiService {
     @GET("customersManagement/customers")
     suspend fun getCustomers(): List<Customer>
+    @GET("maintenance/task/date")
+    suspend fun getTasksByDate(@Query("date") date: String): List<Task>
+    @GET
+    suspend fun getTasks(@Url url: String): List<Task>
+
 }
 
 object RetrofitInstance {
