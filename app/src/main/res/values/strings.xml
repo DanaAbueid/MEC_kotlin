@@ -97,5 +97,7 @@
   <string name="todo">TODO</string>
   <string name="add_task">Add Task</string>
   <string name="manager_note">Manager Note</string>
+    <string name="edit_task">Edit Task</string>
+  <string name="employee_task">Employee Task</string>
 
 </resources>

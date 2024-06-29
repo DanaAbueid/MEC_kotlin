@@ -14,49 +14,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout2"
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="1dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/darkNavy"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/darkNavy"
-        app:tabTextColor="@color/blueNavy">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/all" />
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginEnd="1dp"
+            app:tabIndicatorColor="@color/darkNavy"
+            app:tabSelectedTextColor="@color/darkNavy"
+            app:tabTextColor="@color/blueNavy">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/today" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/approved" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/approved" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/not_approved" />
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/not_approved" />
 
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done" />
+
+        </com.google.android.material.tabs.TabLayout>
+    </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"

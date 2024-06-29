@@ -1,25 +1,24 @@
-package com.mec.mec.customers
+package com.mec.mec.employee
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.mec.mec.databinding.FragmentAddTaskForManagerBinding
-import com.mec.mec.databinding.FragmentCustomerInfoBinding
-import com.mec.mec.databinding.FragmentEmployeeTaskDetailsBinding
-import com.mec.mec.databinding.FragmentEmployeeTasksListBinding
+import com.mec.mec.auth.LoginFragmentDirections
+import com.mec.mec.databinding.FragmentEmployeeViewTaskBinding
+import com.mec.mec.databinding.FragmentLoginBinding
 import com.mec.mec.generic.BaseFragment
 
-class CustomerInfoFragment: BaseFragment() {
+class EmployeeViewTaskFragment: BaseFragment() {
     override fun isLoggedin() = false
-    private var binding: FragmentCustomerInfoBinding? = null
+    private var binding: FragmentEmployeeViewTaskBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomerInfoBinding.inflate(inflater, container, false)
+        binding = FragmentEmployeeViewTaskBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -28,10 +27,11 @@ class CustomerInfoFragment: BaseFragment() {
 
         binding?.let { bindingNotNull ->
 
-            bindingNotNull.buttonEdit.setOnClickListener {
-                findNavController().popBackStack()
+            bindingNotNull.buttonEditTask.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignupUpUserFragment())
             }
 
         }
     }
 }
+

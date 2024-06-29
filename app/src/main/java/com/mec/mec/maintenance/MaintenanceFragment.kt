@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,18 +21,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import com.mec.mec.R
+import com.mec.mec.databinding.FragmentCustomerBinding
+import com.mec.mec.databinding.FragmentMaintenanceBinding
 import com.mec.mec.model.Task
 import java.text.SimpleDateFormat
 
 class MaintenanceFragment : BaseFragment() {
-    override fun isLoggedin(): Boolean = true
 
     private lateinit var taskAdapter: TaskAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: ImageButton
     private val viewModel: MaintenanceViewModel by viewModels()
-
+    private var binding: FragmentMaintenanceBinding? = null
     private var currentTasks: List<Task> = emptyList()
 
     companion object {
@@ -46,43 +48,44 @@ class MaintenanceFragment : BaseFragment() {
         }
     }
 
+    override fun isLoggedin()= true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_maintenance, container, false)
-
-        // Initialize RecyclerView and Adapter
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_maintenance_list)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        taskAdapter = TaskAdapter(emptyList()) { task ->
-            val action = MaintenanceFragmentDirections.actionMaintenanceFragmentToEmployeeTaskFragment(task)
-            findNavController().navigate(action)
-        }
-        recyclerView.adapter = taskAdapter
-
-        // Initialize ProgressBar
-        progressBar = view.findViewById(R.id.progressBar)
-
-        // Initialize Search EditText and Search Button
-        searchEditText = view.findViewById(R.id.searchEditText)
-        searchButton = view.findViewById(R.id.searchButton)
-        setupSearchFunctionality()
-
-        // Setup Date Button click listener
-        val dateButton = view.findViewById<Button>(R.id.date_button)
-        dateButton.setOnClickListener {
-            showDatePickerDialog()
-        }
-
-        return view
+        binding = FragmentMaintenanceBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout2)
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        // Initialize RecyclerView and Adapter
+        val recyclerView = binding?.rvMaintenanceList
+
+        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        taskAdapter = TaskAdapter(emptyList()) { task ->
+            val action = MaintenanceFragmentDirections.actionMaintenanceFragmentToEmployeeTaskFragment(task)
+            findNavController().navigate(action)
+        }
+        recyclerView?.adapter = taskAdapter
+
+        // Initialize ProgressBar
+        progressBar = binding?.progressBar ?: throw IllegalStateException("Progress bar not found in layout.")
+
+        // Initialize Search EditText and Search Button
+        searchEditText = binding?.searchEditText ?: throw IllegalStateException("Search EditText not found in layout.")
+        searchButton = binding?.searchButton ?: throw IllegalStateException("Search Button not found in layout.")
+        setupSearchFunctionality()
+
+        // Setup Date Button click listener
+        binding?.dateButton?.setOnClickListener {
+            showDatePickerDialog()
+        }
+
+        // Setup TabLayout listener
+        binding?.tabLayout2?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
                     fetchDataForTab(it.position)
@@ -94,18 +97,13 @@ class MaintenanceFragment : BaseFragment() {
         })
 
         // Initial fetch based on the default selected tab
-        fetchDataForTab(tabLayout.selectedTabPosition)
+        fetchDataForTab(binding?.tabLayout2?.selectedTabPosition ?: 0)
     }
 
     private fun fetchDataForTab(tabPosition: Int) {
         val url = when (tabPosition) {
-            0 -> {
-                // Fetch tasks for selected date
-                val date = getCurrentDate()
-                "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$date"
-            }
-            1 -> {
-                // Fetch tasks for selected date
+            0, 1 -> {
+                // Fetch tasks for selected date (current date)
                 val date = getCurrentDate()
                 "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$date"
             }
@@ -127,14 +125,20 @@ class MaintenanceFragment : BaseFragment() {
 
         // Observe LiveData for tasks
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            // Store current tasks for search filtering
-            currentTasks = tasks
-            // Hide ProgressBar when data is loaded
-            progressBar.visibility = View.GONE
-            // Update RecyclerView with new data
-            taskAdapter.updateTasks(tasks)
+            if (tasks.isEmpty()) {
+                // If tasks list is empty, show a Toast message
+                Toast.makeText(requireContext(), "No tasks available.", Toast.LENGTH_SHORT).show()
+            } else {
+                // Store current tasks for search filtering
+                currentTasks = tasks
+                // Hide ProgressBar when data is loaded
+                progressBar.visibility = View.GONE
+                // Update RecyclerView with new data
+                taskAdapter.updateTasks(tasks)
+            }
         }
     }
+
 
     private fun getCurrentDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -161,8 +165,7 @@ class MaintenanceFragment : BaseFragment() {
 
     private fun updateUrlWithDate(selectedDate: String) {
         // Update the API URL with the selected date
-        val tabLayout = requireView().findViewById<TabLayout>(R.id.tabLayout2)
-        val tabPosition = tabLayout.selectedTabPosition
+        val tabPosition = binding?.tabLayout2?.selectedTabPosition ?: 0
 
         val url = when (tabPosition) {
             0, 1 -> {
@@ -229,5 +232,10 @@ class MaintenanceFragment : BaseFragment() {
             // If query is empty, show all tasks
             taskAdapter.updateTasks(currentTasks)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null // Clean up references to avoid memory leaks
     }
 }

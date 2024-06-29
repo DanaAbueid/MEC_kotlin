@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mec.mec.API.RetrofitInstance
+import com.mec.mec.api.RetrofitInstance
 import com.mec.mec.request.LoginRequest
 import com.mec.mec.request.SignUpRequest
 import com.mec.mec.model.AuthResponse

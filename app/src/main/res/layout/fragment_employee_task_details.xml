@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="407dp"
+            android:layout_height="51dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/rounded_filled_bg"
+            app:layout_constraintBottom_toTopOf="@id/til_subject"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:ignore="MissingConstraints" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/view_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_subject"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="@string/task_subject"
+            app:layout_constraintBottom_toTopOf="@id/til_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_header"
+            app:layout_constraintVertical_bias="0"
+            app:startIconDrawable="@drawable/fluent__task_list_24_filled"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subject_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_details"
+            style="@style/genericEditText"
+            android:layout_width="404dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:hint="@string/task_details"
+            app:layout_constraintBottom_toTopOf="@id/til_customerName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_subject"
+            app:startIconDrawable="@drawable/streamline__task_list"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/details_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                android:layout_width="370dp"
+                android:layout_height="156dp"
+                android:gravity="center_vertical"
+                android:maxLines="0"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_customerName"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="@string/customer_name"
+            app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_details"
+            app:startIconDrawable="@drawable/hugeicons__user_list"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/customer_name_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_employee_firstName"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="Employee Notes"
+            app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_customerName"
+            app:startIconDrawable="@drawable/clarity__employee_group_line"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_first_name_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_employee_lastName"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="@string/employee_last_name"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/til_manager_note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_employee_firstName"
+            app:startIconDrawable="@drawable/clarity__employee_group_line"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/employee_last_name_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_manager_note"
+            style="@style/genericEditText"
+            android:layout_width="408dp"
+            android:layout_height="137dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="@string/manager_note"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_employee_lastName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/manager_note_edit_text"
+                style="@style/genericMaterialTextInputEditText"
+                android:layout_width="376dp"
+                android:layout_height="122dp"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_edit_task"
+            style="@style/genericButton"
+            android:layout_width="218dp"
+            android:layout_height="49dp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="93dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_background"
+            android:text="@string/edit_task"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/approval_switch"
+            tools:enabled="true" />
+
+        <TextView
+            android:id="@+id/til_headline"
+            android:layout_width="208dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/employee_task"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:drawableEndCompat="@drawable/ph__user_list_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="375dp"
+            android:layout_height="29dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/done"
+            android:textAlignment="center"
+            android:textColor="@color/darkNavy"
+            android:textSize="14sp"
+            android:visibility="visible"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="69dp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/approval_switch"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="8dp"
+            android:text="@string/management_approval"
+            android:textAlignment="center"
+            android:textColor="@color/darkNavy"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_manager_note"
+            app:switchMinWidth="56dp"
+            app:thumbTint="@color/blueNavy"
+            app:trackTint="@color/lightGray"
+            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

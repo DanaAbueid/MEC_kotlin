@@ -51,46 +51,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private fun setMenu() {
-//        binding?.navView?.menu?.let { menu ->
-//            binding?.clMenu?.llItems?.removeAllViews()
-//            menu.forEach {
-//                val itemBinding = ViewMenuItemBinding.inflate(layoutInflater)
-//                itemBinding.ivLogo.setImageDrawable(it.icon)
-//                itemBinding.tvTitle.text = it.title
-//
-//                itemBinding.root.setOnClickListener { view ->
-//                    toggleSideMenu(false)
-//                    matchIdToFragment(it.itemId)?.let { idNotNull ->
-//                        selectedItemId = it.itemId
-//                        navigate(idNotNull)
-//                    }
-//                }
-//                if (it.itemId == selectedItemId) {
-//                    itemBinding.tvTitle.setTextColor(
-//                        ContextCompat.getColor(
-//                            this,
-//                            R.color.light_green
-//                        )
-//                    )
-//                    itemBinding.ivLogo.setColorFilter(
-//                        ContextCompat.getColor(
-//                            this,
-//                            R.color.light_green
-//                        )
-//                    )
-//                    itemBinding.root.setBackgroundColor(
-//                        ContextCompat.getColor(
-//                            this,
-//                            R.color.semi_transparent_light_green
-//                        )
-//                    )
-//                }
-//            }
-//
-//
-//        }
-//    }
 
     private fun matchIdToFragment(id: Int): Int? {
         if (id == R.id.navigation_customer)
@@ -105,16 +65,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigate(@IdRes fragId: Int) {
-
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
         if (isFragmentInBackStack(fragId))
-            findNavController(R.id.mobile_navigation).popBackStack(fragId, false)
+            navController.popBackStack(fragId, false)
         else
-            findNavController(R.id.mobile_navigation).navigate(fragId)
+            navController.navigate(fragId)
     }
 
     private fun isFragmentInBackStack(destinationId: Int) =
         try {
-            findNavController(R.id.mobile_navigation).getBackStackEntry(destinationId)
+            val navController = findNavController(R.id.nav_host_fragment_activity_main)
+            navController.getBackStackEntry(destinationId)
             true
         } catch (e: Exception) {
             false

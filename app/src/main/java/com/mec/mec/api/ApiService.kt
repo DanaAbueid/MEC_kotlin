@@ -1,4 +1,4 @@
-package com.mec.mec.API
+package com.mec.mec.api
 import com.mec.mec.request.LoginRequest
 import com.mec.mec.request.SignUpRequest
 import com.mec.mec.model.AuthResponse

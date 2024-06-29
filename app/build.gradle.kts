@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.androidx.navigation.safe.args)
-  //  alias(libs.plugins.kotlin.parcelize)
+    id("kotlin-parcelize")
+
+    //  alias(libs.plugins.kotlin.parcelize)
 
 }
 
@@ -57,6 +59,7 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:1.0.6")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
+ //   implementation ("org.jetbrains.kotlinx:kotlinx-parcelize-runtime:1.0.0")
 
 
     testImplementation(libs.junit)

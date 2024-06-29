@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/signup_fragment"
-        android:name="com.mec.mec.ui.home.HomeFragment"
+        android:name="com.mec.mec.auth.SignupUserFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_signup_user" />
 
@@ -101,6 +101,19 @@
             app:destination="@id/customer_list" />
     </fragment>
 
+    <fragment
+        android:id="@+id/employee_task_details"
+        android:name="com.mec.mec.employee.EmployeeTaskDetailsFragment"
+        android:label="customer"
+        tools:layout="@layout/fragment_employee_task_details" >
+        <argument
+            android:name="task"
+            app:argType="com.mec.mec.model.Task"
+            app:nullable="false" />
+        <action
+            android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
+            app:destination="@id/customer_list" />
+    </fragment>
 
     <fragment
         android:id="@+id/onboardingFragment"
@@ -119,10 +132,10 @@
         tools:layout="@layout/fragment_maintenance">
         <action
             android:id="@+id/action_maintenanceFragment_to_employeeTaskFragment"
-            app:destination="@id/employeeTaskFragment">
+            app:destination="@id/employee_task_details">
             <argument
                 android:name="task"
-                app:argType="com.mec.mec.maintenance.Task"
+                app:argType="com.mec.mec.model.Task"
                 app:nullable="false" />
         </action>
         <action
@@ -139,6 +152,8 @@
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/employeeFragment" />
     </fragment>
+
+
 
     <fragment
         android:id="@+id/employeeFragment"
@@ -158,6 +173,20 @@
         <argument
             android:name="userId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_task_to_item"
+            app:destination="@id/EmployeeViewTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EmployeeViewTaskFragment"
+        android:name="com.mec.mec.employee.EmployeeViewTaskFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_employee_view_task">
+        <argument
+            android:name="task"
+            app:argType="com.mec.mec.model.Task"
+            app:nullable="false" />
     </fragment>
 
     <fragment

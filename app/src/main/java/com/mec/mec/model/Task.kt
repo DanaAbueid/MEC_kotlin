@@ -1,5 +1,9 @@
 package com.mec.mec.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Task(
     val taskId: Int,
     val taskDate: String,
@@ -11,4 +15,4 @@ data class Task(
     val managerNotes: String,
     val approved: Boolean,
     val customer: Customer
-)
+) : Parcelable
