@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_health_food"
+        android:id="@+id/rv_employee_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
@@ -41,6 +41,7 @@
         android:screenReaderFocusable="false"
         android:tint="@color/white"
         android:tooltipText="add"
+        android:visibility="gone"
         app:backgroundTint="@color/blueNavy"
         app:backgroundTintMode="src_over"
         app:layout_constraintEnd_toEndOf="parent"

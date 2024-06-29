@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/lightGray"
+    app:cardCornerRadius="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/CardGray">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="83dp"
+            android:layout_height="47dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ep__arrow_right_bold" />
+
+        <TextView
+            android:id="@+id/subjectTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/clarity__employee_group_line"
+            android:drawablePadding="5dp"
+            android:textColor="@color/darkNavy"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="TEST TEST TEST" />
+
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/clarity__employee_group_line"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressDrawable="@drawable/clarity__tasks_line"
+            android:stepSize="0.1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/detailsTextView"
+            app:layout_constraintStart_toStartOf="@id/subjectTextView"
+            app:layout_constraintTop_toBottomOf="@id/subjectTextView" />
+
+
+        <TextView
+            android:id="@+id/detailsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5sp"
+            android:textColor="@color/darkNavy"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/fluent__task_list_24_filled"
+            app:drawableTint="@color/darkNavy"
+            app:layout_constraintBottom_toTopOf="@id/tv_open_hours"
+            app:layout_constraintStart_toStartOf="@id/subjectTextView"
+            app:layout_constraintTop_toBottomOf="@id/rating"
+            tools:text="Amman Jordan" />
+
+        <TextView
+            android:id="@+id/tv_open_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5sp"
+            android:textColor="@color/darkNavy"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+            app:drawableTint="@color/darkNavy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/subjectTextView"
+            app:layout_constraintTop_toBottomOf="@id/detailsTextView"
+            tools:text="open until 2AM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

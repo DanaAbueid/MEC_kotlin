@@ -13,16 +13,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import com.mec.mec.R
-import com.mec.mec.ui.model.Task
+import com.mec.mec.model.Task
 import java.text.SimpleDateFormat
 
 class MaintenanceFragment : BaseFragment() {

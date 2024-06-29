@@ -1,4 +1,4 @@
-package com.mec.mec.ui.auth
+package com.mec.mec.auth
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

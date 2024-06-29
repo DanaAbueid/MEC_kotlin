@@ -2,10 +2,9 @@ package com.mec.mec.maintenance
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mec.mec.R
-import com.mec.mec.ui.model.Task
+import com.mec.mec.model.Task
 
 class TaskAdapter(private var tasks: List<Task>, private val onClick: (Task) -> Unit) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 

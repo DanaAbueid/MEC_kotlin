@@ -47,6 +47,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_approved" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -138,5 +144,19 @@
             android:src="@drawable/ic_baseline_person_24"
             tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:animationResolution="@integer/material_motion_duration_medium_2"
+        android:background="@drawable/loading_background"
+        android:backgroundTint="@color/Gray"
+        android:indeterminateTint="@color/blueNavy"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

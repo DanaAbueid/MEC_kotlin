@@ -1,4 +1,4 @@
-package com.mec.mec.ui.model
+package com.mec.mec.model
 
 data class Task(
     val taskId: Int,

@@ -1,4 +1,4 @@
-package com.mec.mec.ui.auth
+package com.mec.mec.auth
 
 class ForgotPasswordFragment {
 }

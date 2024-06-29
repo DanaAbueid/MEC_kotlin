@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.mec.mec.ui.auth.LoginFragment"
+        android:name="com.mec.mec.auth.LoginFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_login" >
         <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/forget_password"
-        android:name="com.mec.mec.ui.auth.ForgotPasswordFragment"
+        android:name="com.mec.mec.auth.ForgotPasswordFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_forgot_password" />
 
@@ -139,24 +139,25 @@
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/employeeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/employeeFragment"
-        android:name="com.mec.mec.employee.EmployeeFragment"
-        android:label="onboarding_fragment"
-        tools:layout="@layout/fragment_onboarding">
+        android:name="com.mec.mec.employee.EmployeeListFragment"
+        android:label="employee_list_fragment"
+        tools:layout="@layout/fragment_employee_list">
         <action
-            android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/employeeFragment" />
+            android:id="@+id/actionemployeeFragment_to_employeeTaskList"
+            app:destination="@id/employeeTasksFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/employeeTaskFragment"
+        android:id="@+id/employeeTasksFragment"
         android:name="com.mec.mec.employee.EmployeeTasksFragment"
-        android:label="onboarding_fragment"
+        android:label="Employee Tasks Fragment"
         tools:layout="@layout/fragment_employee_tasks">
-        <action
-            android:id="@+id/action_maintenanceFragment_to_item"
-            app:destination="@id/employeeTaskFragment" />
+        <argument
+            android:name="userId"
+            app:argType="long" />
     </fragment>
 
     <fragment

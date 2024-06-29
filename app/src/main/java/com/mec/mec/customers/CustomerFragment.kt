@@ -1,25 +1,15 @@
 package com.mec.mec.customers
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mec.mec.R
-import com.mec.mec.customers.CustomerFragmentDirections
 
 import com.mec.mec.databinding.FragmentCustomerBinding
-import com.mec.mec.databinding.FragmentLoginBinding
 import com.mec.mec.generic.BaseFragment
-import com.mec.mec.ui.model.Customer
 
 
 class CustomerFragment : BaseFragment() {
