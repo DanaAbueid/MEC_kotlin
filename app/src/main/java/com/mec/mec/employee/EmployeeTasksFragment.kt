@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,17 +37,17 @@ class EmployeeTasksFragment : BaseFragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: ImageButton
-    private var userID by Delegates.notNull<Long>()
+    private var userID: Long = -1L
     private val viewModel: MaintenanceViewModel by viewModels()
     private var currentTasks: List<Task> = emptyList()
 
     companion object {
-        private const val ARG_TYPE = "type"
+        private const val ARG_USER_ID = "userId"
 
-        fun newInstance(type: String): EmployeeTasksFragment {
+        fun newInstance(userID: Long): EmployeeTasksFragment {
             val fragment = EmployeeTasksFragment()
             val args = Bundle()
-            args.putString(ARG_TYPE, type)
+            args.putLong(ARG_USER_ID, userID)
             fragment.arguments = args
             return fragment
         }
@@ -64,6 +65,11 @@ class EmployeeTasksFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userID = requireArguments().getLong(ARG_USER_ID, -1L)
+        if (userID == -1L) {
+            Toast.makeText(requireContext(), "User ID not provided.", Toast.LENGTH_SHORT).show()
+            return
+        }
         setupViews()
         setupRecyclerView()
         setupSearchFunctionality()
@@ -123,11 +129,11 @@ class EmployeeTasksFragment : BaseFragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
     }
-
+///// todo check the api and pass an object to the next fragment
     private fun fetchDataForTab(tabPosition: Int) {
         val url = when (tabPosition) {
             0 -> {
-                "http://34.234.65.167:8080/api/v1/employeesManagement/task/employee/202/$userID"
+                "http://34.234.65.167:8080/api/v1/employeesManagement/task/employee/$userID"
             }
             1 -> {
                 "http://34.234.65.167:8080/api/v1/employee/allTodayTasks/$userID"

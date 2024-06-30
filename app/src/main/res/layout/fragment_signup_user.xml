@@ -24,10 +24,11 @@
             android:layout_height="181dp"
             android:src="@drawable/pic5"
             app:layout_constraintBottom_toTopOf="@id/til_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:layout_editor_absoluteX="-7dp" />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_name"
@@ -216,7 +217,7 @@
             android:id="@+id/button_add"
             style="@style/genericButton"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/button_background"
             android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -225,6 +226,50 @@
             app:layout_constraintTop_toBottomOf="@id/til_hight"
             app:layout_constraintVertical_bias="0.8"
             tools:enabled="true" />
+
+        <RadioGroup
+            android:layout_width="274dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="13dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/button_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_employee"
+                android:layout_width="137dp"
+                android:layout_height="48dp"
+                android:buttonTint="@color/blueNavy"
+                android:text="@string/title_employee"
+                android:textColor="@color/darkNavy" />
+
+            <RadioButton
+                android:id="@+id/rb_manager"
+                android:layout_width="137dp"
+                android:layout_height="48dp"
+                android:buttonTint="@color/blueNavy"
+                android:text="@string/manager"
+                android:textColor="@color/darkNavy"
+                tools:layout_editor_absoluteX="211dp"
+                tools:layout_editor_absoluteY="594dp" />
+        </RadioGroup>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:animationResolution="@integer/material_motion_duration_medium_2"
+            android:background="@drawable/loading_background"
+            android:backgroundTint="@color/Gray"
+            android:indeterminateTint="@color/blueNavy"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

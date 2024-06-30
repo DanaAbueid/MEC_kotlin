@@ -3,6 +3,7 @@ package com.mec.mec.employee
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -30,10 +31,12 @@ class EmployeeListAdapter(
     class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val firstNameTextView: TextView = itemView.findViewById(R.id.subjectTextView)
         private val lastNameTextView: TextView = itemView.findViewById(R.id.detailsTextView)
+        private  val image: ImageView = itemView.findViewById(R.id.iv_bg)
 
         fun bind(employee: Employee) {
             firstNameTextView.text = employee.firstName
             lastNameTextView.text = employee.lastName
+            image.setImageResource(R.drawable.ep__arrow_right_bold) // Set your image resource here
         }
     }
 
@@ -47,3 +50,4 @@ class EmployeeListAdapter(
         }
     }
 }
+

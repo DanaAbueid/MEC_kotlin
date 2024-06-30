@@ -37,6 +37,8 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
     }
 
     private fun bindTaskDetails(task: Task) {
+        val dateTimeText = "${task.taskDate}  ${task.taskTime}"
+        binding.tvShowDate.text = dateTimeText
         binding.subjectEditText.setText(task.subject)
         binding.detailsEditText.setText(task.details)
         binding.customerNameEditText.setText(task.customer.customerName)

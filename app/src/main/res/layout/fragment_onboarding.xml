@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_background"
         android:text="@string/get_started"
         android:visibility="gone" /> <!-- Initially hidden -->

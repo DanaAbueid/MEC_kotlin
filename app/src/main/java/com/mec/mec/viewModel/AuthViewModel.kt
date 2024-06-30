@@ -1,13 +1,15 @@
 package com.mec.mec.viewModel
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mec.mec.api.RetrofitInstance
+import com.mec.mec.model.AuthResponse
 import com.mec.mec.request.LoginRequest
 import com.mec.mec.request.SignUpRequest
-import com.mec.mec.model.AuthResponse
 import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel() {
@@ -17,12 +19,29 @@ class AuthViewModel : ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
+    var accessToken: String? = null
+    var refreshToken: String? = null
+    private val sharedPreferencesKey = "MyPrefs"
+    private val userIdKey = "userId"
+    private lateinit var sharedPrefs: SharedPreferences
+    var user_id: Long = -1
 
-    fun login(email: String, password: String) {
-        val loginRequest = LoginRequest(email, password)
+    fun initSharedPreferences(context: Context) {
+        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
+        user_id = sharedPrefs.getLong(userIdKey, -1)
+    }
+    fun getUserId(): Long {
+        return user_id
+    }
+    fun setUserId(context: Context, userId: Long) {
+        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
+        this.user_id = userId
+        sharedPrefs.edit().putLong(userIdKey, userId).apply()
+    }
+    fun signUp(signUpRequest: SignUpRequest) {
         viewModelScope.launch {
             try {
-                val response = RetrofitInstance.api.login(loginRequest)
+                val response = RetrofitInstance.api.signUp(signUpRequest)
                 _authResponse.postValue(response)
             } catch (e: Exception) {
                 _error.postValue(e.message)
@@ -30,11 +49,10 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun signUp(email: String, password: String, name: String) {
-        val signUpRequest = SignUpRequest(email, password, name)
+    fun login(loginRequest: LoginRequest) {
         viewModelScope.launch {
             try {
-                val response = RetrofitInstance.api.signUp(signUpRequest)
+                val response = RetrofitInstance.api.login(loginRequest)
                 _authResponse.postValue(response)
             } catch (e: Exception) {
                 _error.postValue(e.message)

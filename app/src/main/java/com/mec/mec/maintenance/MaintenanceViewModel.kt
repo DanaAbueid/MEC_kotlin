@@ -1,4 +1,6 @@
 package com.mec.mec.maintenance
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,9 +18,18 @@ class MaintenanceViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.getTasks(url)
-                _tasks.postValue(response)
+                if (response.isSuccessful) {
+                    _tasks.postValue(response.body() ?: emptyList())
+                } else if (response.code() == 204) {
+                    _tasks.postValue(emptyList())
+
+                } else {
+                    _tasks.postValue(emptyList())
+                    // Optionally log or handle other status codes here
+                }
             } catch (e: Exception) {
-                // Handle the error, e.g., log the error or show a message to the user
+                _tasks.postValue(emptyList())
+                // Optionally log the error here
             }
         }
     }

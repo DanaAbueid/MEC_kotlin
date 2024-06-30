@@ -6,7 +6,10 @@ data class LoginRequest(
 )
 
 data class SignUpRequest(
+    val firstName: String,
+    val lastName: String,
     val email: String,
     val password: String,
-    val name: String // Add any other necessary fields for sign-up
+    val phoneNumber: String,
+    val role: String
 )

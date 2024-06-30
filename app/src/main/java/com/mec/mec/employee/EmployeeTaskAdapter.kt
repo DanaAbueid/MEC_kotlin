@@ -3,6 +3,7 @@ package com.mec.mec.employee
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mec.mec.R
@@ -38,10 +39,14 @@ class EmployeeTaskAdapter(
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val subjectTextView: TextView = itemView.findViewById(R.id.subjectTextView)
         private val detailsTextView: TextView = itemView.findViewById(R.id.detailsTextView)
+        private  val image: ImageView = itemView.findViewById(R.id.iv_bg)
+
 
         fun bind(task: Task) {
             subjectTextView.text = task.subject
             detailsTextView.text = task.details
+            image.setImageResource(R.drawable.ep__arrow_right_bold) // Set your image resource here
+
         }
     }
 }

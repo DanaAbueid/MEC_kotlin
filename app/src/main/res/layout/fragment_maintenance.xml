@@ -50,22 +50,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"
-        android:layout_width="408dp"
-        android:layout_height="542dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="407dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="77dp"
         android:paddingHorizontal="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_button" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         style="@style/Animation.Design.BottomSheetDialog"
-        android:layout_width="69dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="327dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="67dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="321dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="Add"
         android:contextClickable="false"
         android:screenReaderFocusable="false"
@@ -86,7 +87,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/f7__calendar_today"
         android:clickable="true"
         android:contentDescription="@string/search"
@@ -100,7 +101,7 @@
         android:layout_height="49dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:alpha="1"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
@@ -151,5 +152,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/genericSpinner"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:drawable/ic_lock_power_off"
+        android:backgroundTint="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

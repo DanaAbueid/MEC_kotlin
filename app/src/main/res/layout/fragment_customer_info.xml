@@ -42,7 +42,9 @@
             app:startIconDrawable="@drawable/ic_baseline_person_24"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText style="@style/genericMaterialTextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                style="@style/genericMaterialTextInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +60,9 @@
             app:startIconDrawable="@drawable/ic_baseline_location_on_24"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText style="@style/genericMaterialTextInputEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/location"
+                style="@style/genericMaterialTextInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +79,7 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/elevator"
                 style="@style/genericMaterialTextInputEditText"
                 android:inputType="textEmailAddress" />
 
@@ -93,6 +98,7 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/panel"
                 style="@style/genericMaterialTextInputEditText"
                 android:imeOptions="actionDone"
                 android:inputType="text" />

@@ -2,6 +2,7 @@ package com.mec.mec.customers
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mec.mec.R
@@ -15,10 +16,13 @@ class CustomerAdapter(
     inner class CustomerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.tv_name)
         private val locationTextView: TextView = itemView.findViewById(R.id.tv_location)
+        private  val image: ImageView = itemView.findViewById(R.id.iv_bg)
+
 
         fun bind(customer: Customer) {
             nameTextView.text = customer.customerName
             locationTextView.text = customer.customerLocation
+            image.setImageResource(R.drawable.ep__arrow_right_bold) // Set your image resource here
             itemView.setOnClickListener { onItemClick(customer) }
         }
     }

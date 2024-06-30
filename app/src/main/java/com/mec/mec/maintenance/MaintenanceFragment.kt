@@ -88,6 +88,14 @@ class MaintenanceFragment : BaseFragment() {
         binding?.tabLayout2?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
+                    // Hide or show the date button based on the selected tab
+                    if (it.position == 2 || it.position == 3) {
+                        binding?.dateButton?.visibility = View.GONE
+                    } else {
+                        binding?.dateButton?.visibility = View.VISIBLE
+                    }
+
+                    // Fetch data for the selected tab
                     fetchDataForTab(it.position)
                 }
             }
@@ -101,8 +109,16 @@ class MaintenanceFragment : BaseFragment() {
     }
 
     private fun fetchDataForTab(tabPosition: Int) {
+        // Clear the current tasks in the RecyclerView
+        taskAdapter.updateTasks(emptyList())
+
         val url = when (tabPosition) {
-            0, 1 -> {
+            0 -> {
+                // Fetch tasks for selected date (current date)
+                val date = getCurrentDate()
+                "http://34.234.65.167:8080/api/v1/maintenance/AllTasks"
+            }
+            1 -> {
                 // Fetch tasks for selected date (current date)
                 val date = getCurrentDate()
                 "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$date"
@@ -139,7 +155,6 @@ class MaintenanceFragment : BaseFragment() {
         }
     }
 
-
     private fun getCurrentDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.format(Date())
@@ -153,13 +168,13 @@ class MaintenanceFragment : BaseFragment() {
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
+            R.style.CustomDatePickerDialogTheme, // Apply the custom theme here
             { _, year, month, dayOfMonth ->
                 val selectedDate = "${year}-${month + 1}-${dayOfMonth}" // Adjust month +1 because DatePicker month starts from 0
                 updateUrlWithDate(selectedDate)
             },
             year, month, day
         )
-
         datePickerDialog.show()
     }
 
@@ -168,8 +183,12 @@ class MaintenanceFragment : BaseFragment() {
         val tabPosition = binding?.tabLayout2?.selectedTabPosition ?: 0
 
         val url = when (tabPosition) {
-            0, 1 -> {
-                // Fetch tasks for selected date
+            0 -> {
+                // Fetch tasks for selected date (current date)
+                "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$selectedDate"
+            }
+            1 -> {
+                // Fetch tasks for selected date (current date)
                 "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$selectedDate"
             }
             2 -> {

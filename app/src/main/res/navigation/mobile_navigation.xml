@@ -20,6 +20,10 @@
         <action
             android:id="@+id/action_loginFragment_to_userMyActivityFragment"
             app:destination="@id/customer_list" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_employeeTasks"
+            app:destination="@id/employeeTaskListFragment" />
     </fragment>
 
 
@@ -42,7 +46,21 @@
         android:id="@+id/signup_fragment"
         android:name="com.mec.mec.auth.SignupUserFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_signup_user" />
+        tools:layout="@layout/fragment_signup_user" >
+    <action
+        android:id="@+id/action_signupFragment_to_confirm"
+        app:destination="@id/doneSign_fragment" />
+</fragment>
+
+    <fragment
+        android:id="@+id/doneSign_fragment"
+        android:name="com.mec.mec.generic.ConfirmSignupFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_confirm_signup" >
+        <action
+            android:id="@+id/action_confirm_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 
 
@@ -95,6 +113,11 @@
         android:name="com.mec.mec.customers.CustomerInfoFragment"
         android:label="customer"
         tools:layout="@layout/fragment_customer_info" >
+
+        <argument
+            android:name="customer"
+            app:argType="com.mec.mec.model.Customer"
+            app:nullable="false" />
 
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
@@ -195,8 +218,8 @@
         android:label="onboarding_fragment"
         tools:layout="@layout/fragment_employee_tasks_list">
         <action
-            android:id="@+id/action_maintenanceFragment_to_item"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_tasklist_to_item"
+            app:destination="@id/EmployeeViewTaskFragment" />
     </fragment>
 
     <fragment

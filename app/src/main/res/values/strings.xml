@@ -99,5 +99,7 @@
   <string name="manager_note">Manager Note</string>
     <string name="edit_task">Edit Task</string>
   <string name="employee_task">Employee Task</string>
+    <string name="manager">Manager</string>
+    <string name="signup_confirmed_please_login_to_contenue">Signup Confirmed please login to continue</string>
 
 </resources>

@@ -16,9 +16,9 @@
         android:icon="@drawable/clarity__employee_line"
         android:title="@string/title_employee" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/carbon__settings"
-        android:title="@string/title_settings" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_settings"-->
+<!--        android:icon="@drawable/carbon__settings"-->
+<!--        android:title="@string/title_settings" />-->
 
 </menu>

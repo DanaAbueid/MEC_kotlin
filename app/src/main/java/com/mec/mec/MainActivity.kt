@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
             return R.id.maintenanceFragment
         else if (id == R.id.navigation_employee)
             return R.id.employeeFragment
-        else if (id == R.id.navigation_settings)
-            return R.id.settingsFragment
+     //   else if (id == R.id.navigation_settings)
+      //      return R.id.settingsFragment
         return null
     }
 

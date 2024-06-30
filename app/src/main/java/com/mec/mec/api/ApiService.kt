@@ -5,11 +5,15 @@ import com.mec.mec.model.AuthResponse
 import com.mec.mec.model.Customer
 import com.mec.mec.model.Employee
 import com.mec.mec.model.Task
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Url
@@ -22,13 +26,15 @@ interface ApiService {
     @GET("maintenance/task/date")
     suspend fun getTasksByDate(@Query("date") date: String): List<Task>
 
+   // @GET
+ //   suspend fun getTasks(@Url url: String): List<Task>
     @GET
-    suspend fun getTasks(@Url url: String): List<Task>
+    suspend fun getTasks(@Url url: String): Response<List<Task>>
 
-    @POST("auth/login")
+    @POST("auth/authenticate")
     suspend fun login(@Body loginRequest: LoginRequest): AuthResponse
 
-    @POST("auth/signup")
+    @POST("auth/register")
     suspend fun signUp(@Body signUpRequest: SignUpRequest): AuthResponse
 
     @GET("employee/basicInfo")
@@ -65,6 +71,22 @@ interface ApiService {
         @Path("approval") approval: Boolean,
         @Path("done") done: Boolean
     ): List<Task>
+
+
+    @PUT("customersManagement/editCustomer/{name}/{location}/{elevatorType}/{panel}")
+    suspend fun editCustomer(
+        @Path("name") name: String,
+        @Path("location") location: String,
+        @Path("elevatorType") elevatorType: String,
+        @Path("panel") panel: String
+    ): Response<Unit>
+
+    @DELETE("customersManagement/delete/customer")
+    suspend fun deleteCustomer(@Body id: Long): Response<Void>
+
+    @POST("customersManagement/addNewCus")
+    suspend fun addCustomer(@Body customer: Customer): Response<ResponseBody>
+
 }
 
 

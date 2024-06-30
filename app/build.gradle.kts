@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.mec.mec"
-        minSdk = 30
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,7 +59,9 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:1.0.6")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
- //   implementation ("org.jetbrains.kotlinx:kotlinx-parcelize-runtime:1.0.0")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.25")
+
+    //   implementation ("org.jetbrains.kotlinx:kotlinx-parcelize-runtime:1.0.0")
 
 
     testImplementation(libs.junit)
