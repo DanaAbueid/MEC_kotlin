@@ -12,18 +12,34 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signupUpUserFragment"
-            app:destination="@id/signup_fragment" />
+            app:destination="@id/signup_fragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
-            app:destination="@id/forget_password" />
+            app:destination="@id/forget_password"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
 
         <action
             android:id="@+id/action_loginFragment_to_userMyActivityFragment"
-            app:destination="@id/customer_list" />
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
 
         <action
             android:id="@+id/action_loginFragment_to_employeeTasks"
-            app:destination="@id/employeeTaskListFragment" />
+            app:destination="@id/employeeTaskListFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 
@@ -34,13 +50,15 @@
         android:id="@+id/navigation_home"
         android:name="com.mec.mec.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home"
+       />
 
     <fragment
         android:id="@+id/forget_password"
         android:name="com.mec.mec.auth.ForgotPasswordFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_forgot_password" />
+        tools:layout="@layout/fragment_forgot_password"
+       />
 
     <fragment
         android:id="@+id/signup_fragment"
@@ -49,7 +67,11 @@
         tools:layout="@layout/fragment_signup_user" >
     <action
         android:id="@+id/action_signupFragment_to_confirm"
-        app:destination="@id/doneSign_fragment" />
+        app:destination="@id/doneSign_fragment"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/slide_out"
+        app:popEnterAnim="@anim/slide_in"
+        app:popExitAnim="@anim/slide_out"/>
 </fragment>
 
     <fragment
@@ -59,7 +81,11 @@
         tools:layout="@layout/fragment_confirm_signup" >
         <action
             android:id="@+id/action_confirm_to_login"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 
@@ -87,10 +113,18 @@
 
         <action
             android:id="@+id/action_customerFragment_to_customerDetailFragment"
-            app:destination="@id/customer_info" /> <!-- Replace with your actual destination fragment ID -->
+            app:destination="@id/customer_info"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/> <!-- Replace with your actual destination fragment ID -->
         <action
             android:id="@+id/action_customerFragment_to_addCustomerFragment"
-            app:destination="@id/customer_add" /> <!-- Replace with your actual destination fragment ID -->
+            app:destination="@id/customer_add"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/> <!-- Replace with your actual destination fragment ID -->
     </fragment>
 
 
@@ -104,7 +138,11 @@
 
         <action
             android:id="@+id/action_dashboard_to_customer_list"
-            app:destination="@id/customer_list" />
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 
@@ -121,7 +159,11 @@
 
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
-            app:destination="@id/customer_list" />
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -135,7 +177,11 @@
             app:nullable="false" />
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
-            app:destination="@id/customer_list" />
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -145,7 +191,11 @@
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -155,7 +205,11 @@
         tools:layout="@layout/fragment_maintenance">
         <action
             android:id="@+id/action_maintenanceFragment_to_employeeTaskFragment"
-            app:destination="@id/employee_task_details">
+            app:destination="@id/employee_task_details"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out">
             <argument
                 android:name="task"
                 app:argType="com.mec.mec.model.Task"
@@ -163,7 +217,11 @@
         </action>
         <action
             android:id="@+id/action_maintenanceFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
+            app:destination="@id/addTaskFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -173,7 +231,11 @@
         tools:layout="@layout/fragment_add_task_for_manager">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/employeeFragment" />
+            app:destination="@id/employeeFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 
@@ -185,7 +247,11 @@
         tools:layout="@layout/fragment_employee_list">
         <action
             android:id="@+id/actionemployeeFragment_to_employeeTaskList"
-            app:destination="@id/employeeTasksFragment" />
+            app:destination="@id/employeeTasksFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -198,7 +264,11 @@
             app:argType="long" />
         <action
             android:id="@+id/action_task_to_item"
-            app:destination="@id/EmployeeViewTaskFragment" />
+            app:destination="@id/EmployeeViewTaskFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -219,7 +289,11 @@
         tools:layout="@layout/fragment_employee_tasks_list">
         <action
             android:id="@+id/action_tasklist_to_item"
-            app:destination="@id/EmployeeViewTaskFragment" />
+            app:destination="@id/EmployeeViewTaskFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -229,7 +303,11 @@
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
 

@@ -76,6 +76,7 @@
         android:screenReaderFocusable="false"
         android:tint="@color/white"
         android:tooltipText="add"
+        android:visibility="gone"
         app:backgroundTint="@color/blueNavy"
         app:backgroundTintMode="src_over"
         app:layout_constraintBottom_toBottomOf="parent"

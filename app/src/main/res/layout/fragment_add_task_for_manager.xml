@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/iv_header"
-            android:layout_width="404dp"
-            android:layout_height="143dp"
+            android:layout_width="405dp"
+            android:layout_height="34dp"
             android:contentDescription="@string/todo"
             android:src="@drawable/rounded_filled_bg"
             app:layout_constraintBottom_toTopOf="@id/til_Subject"
@@ -39,6 +39,7 @@
             android:background="@drawable/search_background"
             android:orientation="horizontal"
             android:padding="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/til_Subject"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +83,7 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSubject"
                 style="@style/genericMaterialTextInputEditText"
                 tools:ignore="TextContrastCheck" />
 
@@ -95,7 +97,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:hint="@string/task_details"
-            app:layout_constraintBottom_toTopOf="@id/til_customerName"
+            app:layout_constraintBottom_toTopOf="@id/til_employeeNote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_Subject"
@@ -103,11 +105,32 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDetails"
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="370dp"
                 android:layout_height="156dp"
                 android:gravity="center_vertical"
-                android:maxLines="0"
+                android:maxLines="100"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_employeeNote"
+            style="@style/genericEditText"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:hint="Employee Note"
+            app:layout_constraintBottom_toTopOf="@id/til_customerName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_Details"
+            app:startIconDrawable="@drawable/streamline__task_list"
+            app:startIconTint="@color/darkNavy">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmployeeNotes"
+                style="@style/genericMaterialTextInputEditText"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -120,11 +143,12 @@
             app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_Details"
+            app:layout_constraintTop_toBottomOf="@id/til_employeeNote"
             app:startIconDrawable="@drawable/hugeicons__user_list"
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCustomerName"
                 style="@style/genericMaterialTextInputEditText"
                 android:inputType="textEmailAddress" />
 
@@ -143,6 +167,7 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmployeeFirstName"
                 style="@style/genericMaterialTextInputEditText"
                 android:imeOptions="actionDone"
                 android:inputType="text" />
@@ -161,6 +186,7 @@
             app:startIconTint="@color/darkNavy">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmployeeLastName"
                 style="@style/genericMaterialTextInputEditText"
                 android:imeOptions="actionDone"
                 android:inputType="text" />
@@ -180,10 +206,11 @@
             app:layout_constraintTop_toBottomOf="@id/til_employee_lastName">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etManagerNotes"
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="376dp"
                 android:layout_height="122dp"
-                android:inputType="phone" />
+              />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -292,7 +319,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button_delete"
+            android:id="@+id/btn_add"
             style="@style/genericButton"
             android:layout_width="218dp"
             android:layout_height="49dp"
@@ -326,24 +353,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="375dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/sunday_june_23"
-            android:textAlignment="center"
-            android:textColor="@color/blueNavy"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TextSizeCheck" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"

@@ -65,11 +65,12 @@ class EmployeeTasksListFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-     sharedPreferences = requireContext().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+
+        sharedPreferences = requireContext().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         authViewModel.initSharedPreferences(requireContext())
         userID = authViewModel.getUserId()
-        userID = requireArguments().getLong(ARG_USER_ID, -1L)
+
         if (userID == -1L) {
             Toast.makeText(requireContext(), "User ID not provided.", Toast.LENGTH_SHORT).show()
             return
@@ -224,7 +225,7 @@ class EmployeeTasksListFragment: BaseFragment() {
     }
 
     private fun navigateToTaskDetails(task: Task) {
-        val action = EmployeeTasksFragmentDirections.actionTaskToItem(task)
+        val action = EmployeeTasksListFragmentDirections.actionTasklistToItem(task)
         findNavController().navigate(action)
     }
 

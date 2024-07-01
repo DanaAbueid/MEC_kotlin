@@ -53,8 +53,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_Details"
             style="@style/genericEditText"
-            android:layout_width="404dp"
-            android:layout_height="175dp"
+            android:layout_width="403dp"
+            android:layout_height="135dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
             android:hint="@string/task_details"
@@ -68,10 +68,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/detailsEditText"
                 style="@style/genericMaterialTextInputEditText"
-                android:layout_width="370dp"
-                android:layout_height="156dp"
+                android:layout_width="369dp"
+                android:layout_height="108dp"
                 android:gravity="center_vertical"
-                android:maxLines="0"
+                android:maxLines="100"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -152,7 +152,7 @@
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="376dp"
                 android:layout_height="122dp"
-                android:inputType="phone" />
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

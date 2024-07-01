@@ -14,22 +14,30 @@ class MaintenanceViewModel : ViewModel() {
     private val _tasks = MutableLiveData<List<Task>>()
     val tasks: LiveData<List<Task>> get() = _tasks
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+
     fun fetchTasks(url: String) {
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.getTasks(url)
-                if (response.isSuccessful) {
-                    _tasks.postValue(response.body() ?: emptyList())
-                } else if (response.code() == 204) {
+                if (response.code() == 204) {
                     _tasks.postValue(emptyList())
-
+                    _error.postValue("No content available.")
+                } else if (response.isSuccessful) {
+                    response.body()?.let {
+                        _tasks.postValue(it)
+                    } ?: run {
+                        _tasks.postValue(emptyList())
+                        _error.postValue("Failed to load tasks.")
+                    }
                 } else {
                     _tasks.postValue(emptyList())
-                    // Optionally log or handle other status codes here
+                    _error.postValue("Failed to load tasks.")
                 }
             } catch (e: Exception) {
                 _tasks.postValue(emptyList())
-                // Optionally log the error here
+                _error.postValue("Network error: ${e.message}")
             }
         }
     }

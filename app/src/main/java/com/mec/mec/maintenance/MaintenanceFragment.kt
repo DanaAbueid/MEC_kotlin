@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import com.mec.mec.R
+import com.mec.mec.customers.CustomerFragmentDirections
 import com.mec.mec.databinding.FragmentCustomerBinding
 import com.mec.mec.databinding.FragmentMaintenanceBinding
 import com.mec.mec.model.Task
@@ -71,6 +72,10 @@ class MaintenanceFragment : BaseFragment() {
         }
         recyclerView?.adapter = taskAdapter
 
+        binding?.let { bindingNotNull ->
+            bindingNotNull.fab.setOnClickListener {
+                findNavController().navigate(MaintenanceFragmentDirections.actionMaintenanceFragmentToAddTaskFragment())
+            }}
         // Initialize ProgressBar
         progressBar = binding?.progressBar ?: throw IllegalStateException("Progress bar not found in layout.")
 
@@ -83,6 +88,7 @@ class MaintenanceFragment : BaseFragment() {
         binding?.dateButton?.setOnClickListener {
             showDatePickerDialog()
         }
+
 
         // Setup TabLayout listener
         binding?.tabLayout2?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -141,17 +147,24 @@ class MaintenanceFragment : BaseFragment() {
 
         // Observe LiveData for tasks
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            // Hide ProgressBar when data is loaded
+            progressBar.visibility = View.GONE
+
             if (tasks.isEmpty()) {
                 // If tasks list is empty, show a Toast message
                 Toast.makeText(requireContext(), "No tasks available.", Toast.LENGTH_SHORT).show()
             } else {
                 // Store current tasks for search filtering
                 currentTasks = tasks
-                // Hide ProgressBar when data is loaded
-                progressBar.visibility = View.GONE
                 // Update RecyclerView with new data
                 taskAdapter.updateTasks(tasks)
             }
+        }
+
+        viewModel.error.observe(viewLifecycleOwner) { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            // Hide ProgressBar in case of an error
+            progressBar.visibility = View.GONE
         }
     }
 

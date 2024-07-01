@@ -19,7 +19,7 @@ class CustomerViewModel : ViewModel() {
         fetchCustomers()
     }
 
-    private fun fetchCustomers() {
+     fun fetchCustomers() {
         viewModelScope.launch {
             try {
                 val customers = RetrofitInstance.api.getCustomers()

@@ -81,7 +81,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/elevator"
                 style="@style/genericMaterialTextInputEditText"
-                android:inputType="textEmailAddress" />
+               />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,7 +116,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/genericMaterialTextInputEditText"
-                android:inputType="phone" />
+              />
 
         </com.google.android.material.textfield.TextInputLayout>
 

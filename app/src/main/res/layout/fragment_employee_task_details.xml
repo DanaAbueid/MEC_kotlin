@@ -70,7 +70,7 @@
                 android:layout_width="370dp"
                 android:layout_height="156dp"
                 android:inputType="text|textMultiLine"
-                android:maxLines="0"
+                android:maxLines="100"
                 android:text="Task"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -155,7 +155,7 @@
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="376dp"
                 android:layout_height="122dp"
-                android:inputType="phone" />
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

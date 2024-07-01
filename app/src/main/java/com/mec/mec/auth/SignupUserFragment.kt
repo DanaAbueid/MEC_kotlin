@@ -43,8 +43,8 @@ class SignupUserFragment: BaseFragment() {
             val role = if (binding.rbEmployee.isChecked) "EMPLOYEE" else "MANAGER"
 
             val signUpRequest = SignUpRequest(
-                firstName = firstName,
-                lastName = lastName,
+                firstname = firstName,
+                lastname = lastName,
                 email = email,
                 password = password,
                 phoneNumber = phoneNumber,

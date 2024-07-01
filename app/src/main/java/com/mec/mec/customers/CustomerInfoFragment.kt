@@ -56,7 +56,7 @@ class CustomerInfoFragment : BaseFragment() {
         // Observe the deletion status
         customerViewModel.deleteStatus.observe(viewLifecycleOwner, Observer { success ->
             if (success) {
-                // Handle successful deletion, e.g., show a message
+                findNavController().popBackStack()
                 Toast.makeText(requireContext(), "Customer deleted successfully", Toast.LENGTH_SHORT).show()
                 // Optionally, update your UI or reload customer list after deletion
             } else {

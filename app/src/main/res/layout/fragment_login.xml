@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar"
@@ -14,8 +13,8 @@
 
     <ImageView
         android:id="@+id/settingPic"
-        android:layout_width="396dp"
-        android:layout_height="159dp"
+        android:layout_width="401dp"
+        android:layout_height="170dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/welcomeText"
@@ -26,18 +25,19 @@
 
     <TextView
         android:id="@+id/welcomeText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="370dp"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="233dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:text="@string/welcome"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textColor="@color/blueNavy"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/til_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_username"
@@ -45,13 +45,12 @@
         android:layout_width="356dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/username"
         app:layout_constraintBottom_toTopOf="@id/til_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
         app:layout_constraintVertical_chainStyle="packed"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 

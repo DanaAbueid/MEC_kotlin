@@ -90,4 +90,3 @@ class LoginFragment : BaseFragment() {
         }
     }
 }
-
