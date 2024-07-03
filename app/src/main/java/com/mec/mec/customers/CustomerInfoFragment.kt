@@ -8,13 +8,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.mec.mec.databinding.FragmentAddTaskForManagerBinding
 import com.mec.mec.databinding.FragmentCustomerInfoBinding
-import com.mec.mec.databinding.FragmentEmployeeTaskDetailsBinding
-import com.mec.mec.databinding.FragmentEmployeeTasksListBinding
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Customer
-import com.mec.mec.model.Task
 
 class CustomerInfoFragment : BaseFragment() {
 

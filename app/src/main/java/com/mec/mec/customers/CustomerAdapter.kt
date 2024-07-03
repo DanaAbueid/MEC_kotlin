@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mec.mec.R
 import com.mec.mec.model.Customer
+import com.mec.mec.model.Task
 
 class CustomerAdapter(
     private var customers: List<Customer>,

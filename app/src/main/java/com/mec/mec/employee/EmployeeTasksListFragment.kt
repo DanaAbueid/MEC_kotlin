@@ -69,7 +69,7 @@ class EmployeeTasksListFragment: BaseFragment() {
         sharedPreferences = requireContext().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         authViewModel.initSharedPreferences(requireContext())
-        userID = authViewModel.getUserId()
+        userID = authViewModel.getUserIdForEmployee()
 
         if (userID == -1L) {
             Toast.makeText(requireContext(), "User ID not provided.", Toast.LENGTH_SHORT).show()

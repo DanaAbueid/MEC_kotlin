@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mec.mec.SessionManager
 import com.mec.mec.api.RetrofitInstance
 import com.mec.mec.model.AuthResponse
 import com.mec.mec.request.LoginRequest
@@ -15,30 +16,21 @@ import kotlinx.coroutines.launch
 class AuthViewModel : ViewModel() {
     private val _authResponse = MutableLiveData<AuthResponse>()
     val authResponse: LiveData<AuthResponse> get() = _authResponse
-
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
-
-    var accessToken: String? = null
-    var refreshToken: String? = null
-    private val sharedPreferencesKey = "AppPrefs"
-    private val userIdKey = "user_id"
     private lateinit var sharedPrefs: SharedPreferences
     var user_id: Long = -1
 
-    fun initSharedPreferences(context: Context) {
-        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
-        user_id = sharedPrefs.getLong(userIdKey, -1)
-    }
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+    private val sharedPreferencesKey = "AppPrefs"
+    private val userIdKey = "user_id"
 
-    fun getUserId(): Long {
-        return user_id
-    }
+    var accessToken: String? = null
+    var refreshToken: String? = null
 
-    fun setUserId(context: Context, userId: Long) {
-        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
-        this.user_id = userId
-        sharedPrefs.edit().putLong(userIdKey, userId).apply()
+    private lateinit var sessionManager: SessionManager
+
+    fun initSessionManager(context: Context) {
+        sessionManager = SessionManager(context)
     }
 
     fun signUp(signUpRequest: SignUpRequest) {
@@ -46,10 +38,18 @@ class AuthViewModel : ViewModel() {
             try {
                 val response = RetrofitInstance.api.signUp(signUpRequest)
                 _authResponse.postValue(response)
+                response?.let {
+
+                }
             } catch (e: Exception) {
                 _error.postValue(e.message)
             }
         }
+    }
+    fun setUserId(context: Context, userId: Long) {
+        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
+        this.user_id = userId
+        sharedPrefs.edit().putLong(userIdKey, userId).apply()
     }
 
     fun login(loginRequest: LoginRequest) {
@@ -57,9 +57,35 @@ class AuthViewModel : ViewModel() {
             try {
                 val response = RetrofitInstance.api.login(loginRequest)
                 _authResponse.postValue(response)
+                response?.let {
+                    sessionManager.createLoginSession(it.access_token, loginRequest.email, loginRequest.password, it.user_id.toLong(), it.user_role)
+                }
             } catch (e: Exception) {
                 _error.postValue(e.message)
             }
         }
     }
+
+    fun logout() {
+        sessionManager.logout()
+    }
+
+    fun isLoggedIn(): Boolean {
+        return sessionManager.isLoggedIn()
+    }
+
+    fun getUserRole(): String? {
+        return sessionManager.getUserRole()
+    }
+    fun initSharedPreferences(context: Context) {
+        sharedPrefs = context.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
+        user_id = sharedPrefs.getLong(userIdKey, -1)
+    }
+
+    fun getUserIdForEmployee(): Long {
+        return user_id
+    }
+
+
+
 }

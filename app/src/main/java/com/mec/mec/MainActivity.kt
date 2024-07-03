@@ -1,30 +1,27 @@
 package com.mec.mec
-
-
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.forEach
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isEmpty
 import androidx.navigation.findNavController
 import com.mec.mec.databinding.ActivityMainBinding
-import com.mec.mec.databinding.ViewMenuItemBinding
+import com.mec.mec.viewModel.AuthViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
     private var selectedItemId = R.id.customer_list
+    private lateinit var authViewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         supportActionBar?.hide()
         UserSession.defaultMenu = R.menu.bottom_nav_menu
-
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     fun isLoggedIn(state: Boolean) {

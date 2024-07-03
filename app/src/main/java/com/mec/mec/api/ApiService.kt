@@ -105,6 +105,12 @@ interface ApiService {
         @Body updateNotes: UpdateNotes
     ): Response<Void>
 
+    @PUT("employee/editEmpolyeeNotes/{note}")
+    suspend fun editEmployeeNotePath(
+        @Path("note") note: String,
+    ): Response<Void>
+
+
     @PUT("maintenance/editApproval")
     suspend fun editTaskApproval(
         @Body updateApproval: UpdateApproval

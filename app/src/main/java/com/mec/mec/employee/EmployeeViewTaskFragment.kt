@@ -13,6 +13,7 @@ import com.mec.mec.databinding.FragmentEmployeeViewTaskBinding
 import com.mec.mec.databinding.FragmentLoginBinding
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Task
+import com.mec.mec.model.UpdateApproval
 import com.mec.mec.model.UpdateNotes
 import com.mec.mec.viewModel.TaskViewModel
 
@@ -40,11 +41,16 @@ class EmployeeViewTaskFragment: BaseFragment() {
             bindTaskDetails(task)
         }
 
-        // Handle edit button click
-        binding?.buttonEditTask?.setOnClickListener {
+        binding.buttonEditTask.setOnClickListener {
+            // Read current values from EditText fields
+            val currentNote = binding.employeeFirstNameEditText.text.toString()
+            val currentManagerNote = binding.managerNoteEditText.text.toString()
             taskViewModel.editTaskDone(taskID)
-            taskViewModel.editEmployeeNote(UpdateNotes(taskID, note))
+            taskViewModel.editEmployeeNote(UpdateNotes(taskID, currentNote))
+            taskViewModel.editManagerNote(UpdateNotes(taskID, currentManagerNote))
+            taskViewModel.editTaskApproval(UpdateApproval(taskID, binding.approvalSwitch.isChecked))
         }
+
 
         taskViewModel.editDoneResponse.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {

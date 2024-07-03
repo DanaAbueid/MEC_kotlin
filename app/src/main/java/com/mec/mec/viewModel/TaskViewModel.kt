@@ -54,7 +54,7 @@ class TaskViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _editDoneResponse.postValue(false)
-                _error.postValue("Network error: ${e.message}")
+                _error.postValue("Network error: ")
             }
         }
     }
@@ -71,7 +71,7 @@ class TaskViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _editManagerNoteResponse.postValue(false)
-                _error.postValue("Network error: ${e.message}")
+                _error.postValue("Network error:")
             }
         }
     }
@@ -88,7 +88,7 @@ class TaskViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _editEmployeeNoteResponse.postValue(false)
-                _error.postValue("Network error: ${e.message}")
+                _error.postValue("Network error")
             }
         }
     }
@@ -114,7 +114,7 @@ class TaskViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _editTaskApprovalResponse.postValue(false)
-                _error.postValue("Network error: ${e.message}")
+                _error.postValue("Network error")
             }
         }
     }

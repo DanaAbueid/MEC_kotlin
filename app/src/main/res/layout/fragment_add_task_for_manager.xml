@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -209,8 +209,7 @@
                 android:id="@+id/etManagerNotes"
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="376dp"
-                android:layout_height="122dp"
-              />
+                android:layout_height="122dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

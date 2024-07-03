@@ -1,13 +1,10 @@
 package com.mec.mec.employee
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.mec.mec.R
 import com.mec.mec.databinding.FragmentEmployeeTaskDetailsBinding
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Task
@@ -39,21 +36,31 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
         arguments?.getParcelable<Task>("task")?.let { task ->
             bindTaskDetails(task)
         }
-
-        // Handle edit button click
+        note = binding.employeeFirstNameEditText.text.toString()
+        managerNote = binding.managerNoteEditText.text.toString()
         binding.buttonEditTask.setOnClickListener {
-            // Implement edit task functionality here
-        }
-        binding?.buttonEditTask?.setOnClickListener {
-            taskViewModel.editTaskDone(taskID)
-            taskViewModel.editEmployeeNote(UpdateNotes(taskID, note))
-            taskViewModel.editManagerNote(UpdateNotes(taskID, note))
-            taskViewModel.editTaskApproval(UpdateApproval(taskID,binding.approvalSwitch.isChecked))
+            // Read current values from EditText fields
+            val currentNote = binding.employeeFirstNameEditText.text.toString()
+            val currentManagerNote = binding.managerNoteEditText.text.toString()
+
+            // Update the notes using ViewModel methods
+            taskViewModel.editEmployeeNote(UpdateNotes(taskID, currentNote))
+            taskViewModel.editManagerNote(UpdateNotes(taskID, currentManagerNote))
+            taskViewModel.editTaskApproval(UpdateApproval(taskID, binding.approvalSwitch.isChecked))
         }
 
-        taskViewModel.editDoneResponse.observe(viewLifecycleOwner) { isSuccess ->
+
+        taskViewModel.editManagerNoteResponse.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
-                Toast.makeText(context, "Task marked as done.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Task manager note updated successfully.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Failed to mark task as done.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        taskViewModel.editEmployeeNoteResponse.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                Toast.makeText(context, "Task employee note updated successfully.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Failed to mark task as done.", Toast.LENGTH_SHORT).show()
             }
@@ -75,8 +82,6 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
         binding.managerNoteEditText.setText(task.managerNotes)
         binding.approvalSwitch.isChecked = task.approved
         taskID = task.taskId
-        note = binding.employeeFirstNameEditText.text.toString()
-        managerNote = binding.managerNoteEditText.text.toString()
 
     }
 

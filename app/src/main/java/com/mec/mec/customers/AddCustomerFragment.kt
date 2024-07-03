@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.mec.mec.auth.LoginFragmentDirections
 import com.mec.mec.databinding.FragmentAddCustomerBinding
-import com.mec.mec.databinding.FragmentEmployeeViewTaskBinding
-import com.mec.mec.databinding.FragmentLoginBinding
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Customer
 

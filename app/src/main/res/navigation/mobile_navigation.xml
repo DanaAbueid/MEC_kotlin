@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/onboardingFragment">
+    app:startDestination="@+id/splashFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -198,6 +198,8 @@
             app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
+
+
     <fragment
         android:id="@+id/maintenanceFragment"
         android:name="com.mec.mec.maintenance.MaintenanceFragment"
@@ -264,7 +266,7 @@
             app:argType="long" />
         <action
             android:id="@+id/action_task_to_item"
-            app:destination="@id/EmployeeViewTaskFragment"
+            app:destination="@id/employee_task_details"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
@@ -310,5 +312,32 @@
             app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mec.mec.SplashFragment"
+        android:label="onboarding_fragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_splashFragment_to_EmployeeFragment"
+            app:destination="@id/employeeTaskListFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_splashFragment_to_ManagerFragment"
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
 
 </navigation>

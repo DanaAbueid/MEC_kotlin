@@ -37,7 +37,7 @@ class MaintenanceViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _tasks.postValue(emptyList())
-                _error.postValue("Network error: ${e.message}")
+                _error.postValue("Network error")
             }
         }
     }

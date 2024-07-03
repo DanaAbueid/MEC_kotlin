@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
@@ -17,12 +16,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import com.mec.mec.R
-import com.mec.mec.customers.CustomerFragmentDirections
-import com.mec.mec.databinding.FragmentCustomerBinding
 import com.mec.mec.databinding.FragmentMaintenanceBinding
 import com.mec.mec.model.Task
 import java.text.SimpleDateFormat
@@ -49,7 +45,7 @@ class MaintenanceFragment : BaseFragment() {
         }
     }
 
-    override fun isLoggedin()= true
+    override fun isLoggedin() = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,7 +71,9 @@ class MaintenanceFragment : BaseFragment() {
         binding?.let { bindingNotNull ->
             bindingNotNull.fab.setOnClickListener {
                 findNavController().navigate(MaintenanceFragmentDirections.actionMaintenanceFragmentToAddTaskFragment())
-            }}
+            }
+        }
+
         // Initialize ProgressBar
         progressBar = binding?.progressBar ?: throw IllegalStateException("Progress bar not found in layout.")
 
@@ -88,7 +86,6 @@ class MaintenanceFragment : BaseFragment() {
         binding?.dateButton?.setOnClickListener {
             showDatePickerDialog()
         }
-
 
         // Setup TabLayout listener
         binding?.tabLayout2?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -117,11 +114,11 @@ class MaintenanceFragment : BaseFragment() {
     private fun fetchDataForTab(tabPosition: Int) {
         // Clear the current tasks in the RecyclerView
         taskAdapter.updateTasks(emptyList())
+        binding?.rvMaintenanceList?.visibility = View.GONE
 
         val url = when (tabPosition) {
             0 -> {
                 // Fetch tasks for selected date (current date)
-                val date = getCurrentDate()
                 "http://34.234.65.167:8080/api/v1/maintenance/AllTasks"
             }
             1 -> {
@@ -151,13 +148,14 @@ class MaintenanceFragment : BaseFragment() {
             progressBar.visibility = View.GONE
 
             if (tasks.isEmpty()) {
-                // If tasks list is empty, show a Toast message
+                binding?.rvMaintenanceList?.visibility = View.GONE
                 Toast.makeText(requireContext(), "No tasks available.", Toast.LENGTH_SHORT).show()
             } else {
                 // Store current tasks for search filtering
                 currentTasks = tasks
                 // Update RecyclerView with new data
                 taskAdapter.updateTasks(tasks)
+                binding?.rvMaintenanceList?.visibility = View.VISIBLE
             }
         }
 
@@ -242,7 +240,7 @@ class MaintenanceFragment : BaseFragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 // Perform search with current text after a short delay (if needed)
-                // performSearch()
+                 performSearch()
             }
         })
     }
