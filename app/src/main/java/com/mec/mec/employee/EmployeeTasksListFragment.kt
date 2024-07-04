@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
+import com.mec.mec.customers.CustomerFragmentDirections
 import com.mec.mec.databinding.FragmentEmployeeTasksBinding
 import com.mec.mec.databinding.FragmentEmployeeTasksListBinding
 import com.mec.mec.generic.BaseFragment
@@ -65,6 +66,12 @@ class EmployeeTasksListFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
+
+        binding?.logoutBtn?.setOnClickListener {
+            authViewModel.deleteUser()
+            findNavController().navigate(EmployeeTasksListFragmentDirections.actionEmployeetasksFragmentToLogin())
+        }
 
         sharedPreferences = requireContext().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]

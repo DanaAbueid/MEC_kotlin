@@ -10,6 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mec.mec.api.ApiService
 import com.mec.mec.api.RetrofitInstance
+import com.mec.mec.database.AppDatabase
+import com.mec.mec.database.DatabaseProvider
+import com.mec.mec.database.EmployeeDao
+import com.mec.mec.database.EmployeeEntity
 import com.mec.mec.databinding.FragmentEmployeeListBinding
 import kotlinx.coroutines.launch
 
@@ -21,6 +25,8 @@ class EmployeeListFragment: BaseFragment(){
 
     private lateinit var apiService: ApiService
     private lateinit var adapter: EmployeeListAdapter
+  //  private lateinit var employeeDao: EmployeeDao
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +42,7 @@ class EmployeeListFragment: BaseFragment(){
         setupRecyclerView()
 
         apiService = RetrofitInstance.api
+     //   employeeDao = DatabaseProvider.getDatabase(requireContext()).employeeDao()
 
         fetchEmployeeBasicInfo()
     }
@@ -52,6 +59,7 @@ class EmployeeListFragment: BaseFragment(){
         lifecycleScope.launch {
             try {
                 val response = apiService.getUserBasicInfo()
+
                 adapter.submitList(response)
             } catch (e: Exception) {
                 Toast.makeText(

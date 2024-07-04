@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,18 +23,19 @@ import com.mec.mec.databinding.FragmentCustomerBinding
 import com.mec.mec.employee.EmployeeListFragmentDirections
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Customer
-import com.mec.mec.model.Task
+import com.mec.mec.viewModel.AuthViewModel
 
 
 class CustomerFragment : BaseFragment() {
     private var binding: FragmentCustomerBinding? = null
     private lateinit var customerAdapter: CustomerAdapter
-    private val viewModel: CustomerViewModel by viewModels()
+    private lateinit var authViewModel: AuthViewModel
     private lateinit var progressBar: ProgressBar
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: ImageButton
-    private var currentTasks: List<Customer> = emptyList()
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private var currentTasks: List<Customer> = emptyList()
+    private val viewModel: CustomerViewModel by viewModels()
 
     override fun isLoggedin() = true
 
@@ -47,6 +50,14 @@ class CustomerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
+
+        binding?.logoutBtn?.setOnClickListener {
+            authViewModel.deleteUser()
+            findNavController().navigate(CustomerFragmentDirections.actionCustomerFragmentToLogin())
+        }
+
+
 
         progressBar = view.findViewById(R.id.progressBar)
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
@@ -56,7 +67,13 @@ class CustomerFragment : BaseFragment() {
             navigateToCustomer(customer)
         }
         recyclerView.adapter = customerAdapter
+
+        // Initialize views from binding
+        searchEditText = binding?.searchEditText ?: return
+        searchButton = binding?.searchButton ?: return
+
         setupSearchFunctionality()
+
         // Show the progress bar and hide RecyclerView while data is being loaded
         progressBar.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
@@ -91,12 +108,13 @@ class CustomerFragment : BaseFragment() {
         val action = CustomerFragmentDirections.actionCustomerFragmentToCustomerDetailFragment(customer)
         findNavController().navigate(action)
     }
+
     private fun setupSearchFunctionality() {
+        // Ensure searchButton and searchEditText are initialized
         searchButton.setOnClickListener {
             performSearch()
         }
 
-        // Optional: Trigger search on keyboard "Done" press
         searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 performSearch()
@@ -106,14 +124,13 @@ class CustomerFragment : BaseFragment() {
             }
         }
 
-        // Optional: Live search as user types
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                // Perform search with current text after a short delay (if needed)
+                // Optional: Live search as user types
                 // performSearch()
             }
         })
@@ -123,15 +140,15 @@ class CustomerFragment : BaseFragment() {
         val query = searchEditText.text.toString().trim()
 
         if (query.isNotEmpty()) {
-            // Filter tasks based on the search query
-            val filteredTasks = currentTasks.filter { customer ->
+            // Filter customers based on the search query
+            val filteredCustomers = currentTasks.filter { customer ->
                 customer.customerName.contains(query, ignoreCase = true)
             }
 
-            // Update RecyclerView with filtered tasks
-            customerAdapter.updateCustomers(filteredTasks)
+            // Update RecyclerView with filtered customers
+            customerAdapter.updateCustomers(filteredCustomers)
         } else {
-            // If query is empty, show all tasks
+            // If query is empty, show all customers
             customerAdapter.updateCustomers(currentTasks)
         }
     }

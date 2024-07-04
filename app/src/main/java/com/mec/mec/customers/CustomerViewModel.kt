@@ -9,11 +9,12 @@ import com.mec.mec.model.Customer
 import android.util.Log
 
 
-class CustomerViewModel : ViewModel() {
+class CustomerViewModel  :  ViewModel() {
     private val _customers = MutableLiveData<List<Customer>>()
     private val _deleteStatus = MutableLiveData<Boolean>()
     val deleteStatus: LiveData<Boolean> get() = _deleteStatus
     val customers: LiveData<List<Customer>> get() = _customers
+
 
     init {
         fetchCustomers()
@@ -22,9 +23,12 @@ class CustomerViewModel : ViewModel() {
      fun fetchCustomers() {
         viewModelScope.launch {
             try {
+
                 val customers = RetrofitInstance.api.getCustomers()
+
                 Log.d("CustomerViewModel", "Customers fetched successfully: $customers")
                 _customers.postValue(customers)
+
             } catch (e: Exception) {
                 Log.e("CustomerViewModel", "Error fetching customers", e)
                 e.printStackTrace()

@@ -31,7 +31,8 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out"/>
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/>
 
         <action
             android:id="@+id/action_loginFragment_to_employeeTasks"
@@ -39,7 +40,8 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out"/>
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 
@@ -124,7 +126,15 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out"/> <!-- Replace with your actual destination fragment ID -->
+            app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_customerFragment_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/><!-- Replace with your actual destination fragment ID -->
     </fragment>
 
 
@@ -296,6 +306,14 @@
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
             app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_employeetasksFragment_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

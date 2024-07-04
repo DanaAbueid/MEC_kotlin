@@ -138,6 +138,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_customerName"
             style="@style/genericEditText"
+            android:layout_width="427dp"
+            android:layout_height="61dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/customer_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
@@ -147,16 +149,19 @@
             app:startIconDrawable="@drawable/hugeicons__user_list"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/etCustomerName"
-                style="@style/genericMaterialTextInputEditText"
-                android:inputType="textEmailAddress" />
+                android:layout_width="387dp"
+                android:layout_height="63dp"
+                android:hint="Customer Name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_employee_firstName"
             style="@style/genericEditText"
+            android:layout_width="427dp"
+            android:layout_height="61dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/employee_first_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
@@ -166,16 +171,19 @@
             app:startIconDrawable="@drawable/clarity__employee_group_line"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/etEmployeeFirstName"
-                style="@style/genericMaterialTextInputEditText"
-                android:imeOptions="actionDone"
-                android:inputType="text" />
+                android:layout_width="387dp"
+                android:layout_height="63dp"
+                android:hint="Employee First Name" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_employee_lastName"
             style="@style/genericEditText"
+            android:layout_width="427dp"
+            android:layout_height="61dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/employee_last_name"
             app:layout_constraintBottom_toTopOf="@id/til_managerNote"
@@ -185,11 +193,12 @@
             app:startIconDrawable="@drawable/clarity__employee_group_line"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/etEmployeeLastName"
-                style="@style/genericMaterialTextInputEditText"
-                android:imeOptions="actionDone"
-                android:inputType="text" />
+                android:layout_width="387dp"
+                android:layout_height="63dp"
+                android:hint="Employee Last Name" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

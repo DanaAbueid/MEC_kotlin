@@ -52,15 +52,22 @@ class LoginFragment : BaseFragment() {
                 login()
             }
         }
+//        authViewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
+//            if (isLoggedIn) {
+//                authViewModel.getUserRole()?.let { navigateBasedOnRole(it) }
+//            }
+//        }
 
         authViewModel.authResponse.observe(viewLifecycleOwner) { authResponse ->
             saveUserData(authResponse.user_id.toLong(), authResponse.user_role)
             navigateBasedOnRole(authResponse.user_role)
         }
 
+
         authViewModel.error.observe(viewLifecycleOwner) { error ->
             Toast.makeText(context, "Login failed: $error", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun login() {

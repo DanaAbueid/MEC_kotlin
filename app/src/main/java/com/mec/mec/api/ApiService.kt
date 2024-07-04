@@ -115,8 +115,11 @@ interface ApiService {
     suspend fun editTaskApproval(
         @Body updateApproval: UpdateApproval
     ): Response<Void>
-    @DELETE("customersManagement/delete/customer")
-    suspend fun deleteCustomer(@Body id: Long): Response<Void>
+
+
+    @DELETE("customersManagement/delete/customer/{customerID}")
+    suspend fun deleteCustomer(@Path("customerID") customerID: Long): Response<Void>
+
     @POST("maintenance/newTask")
     suspend fun addNewTask(@Body newTask: NewTaskRequest): Response<Void>
     @POST("customersManagement/addNewCus")
