@@ -17,6 +17,8 @@
     <color name="ClearGray">#2DEEEEEE</color>
     <color name="lightGray">#AAAAAA</color>
     <color name="CardGray">#DDDDDD</color>
-    <color name="editTextBackground">#F0F0F0</color> <!-- Gray background -->
+    <color name="editTextBackground">#F0F0F0</color>
+    <color name="noColor">#00FFFFFF</color>
+    <!-- Gray background -->
 
 </resources>

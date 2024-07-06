@@ -101,5 +101,7 @@
   <string name="employee_task">Employee Task</string>
     <string name="manager">Manager</string>
     <string name="signup_confirmed_please_login_to_contenue">Signup Confirmed please login to continue</string>
+    <string name="employee_note">Employee Note</string>
+    <string name="see_tasks">See Tasks</string>
 
 </resources>

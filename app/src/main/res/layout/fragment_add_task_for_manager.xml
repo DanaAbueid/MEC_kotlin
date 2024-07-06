@@ -43,7 +43,7 @@
             app:layout_constraintBottom_toTopOf="@+id/til_Subject"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            >
 
             <EditText
                 android:id="@+id/searchEditText"
@@ -71,7 +71,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_Subject"
-            style="@style/genericEditText"
+            style="@style/genericSpinner"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/task_subject"
             app:layout_constraintBottom_toTopOf="@id/til_Details"
@@ -82,10 +82,9 @@
             app:startIconDrawable="@drawable/fluent__task_list_24_filled"
             app:startIconTint="@color/darkNavy">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/etSubject"
-                style="@style/genericMaterialTextInputEditText"
-                tools:ignore="TextContrastCheck" />
+                style="@style/genericMaterialTextInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +119,8 @@
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
-            android:hint="Employee Note"
+            android:hint="@string/employee_note"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/til_customerName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,9 +137,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_customerName"
-            style="@style/genericEditText"
-            android:layout_width="427dp"
-            android:layout_height="61dp"
+            style="@style/genericSpinner"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/customer_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_firstName"
@@ -149,19 +147,17 @@
             app:startIconDrawable="@drawable/hugeicons__user_list"
             app:startIconTint="@color/darkNavy">
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/etCustomerName"
-                android:layout_width="387dp"
-                android:layout_height="63dp"
-                android:hint="Customer Name" />
+                android:hint="@string/customer_name"
+                style="@style/genericMaterialTextInputEditText" />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_employee_firstName"
-            style="@style/genericEditText"
-            android:layout_width="427dp"
-            android:layout_height="61dp"
+            style="@style/genericSpinner"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/employee_first_name"
             app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
@@ -171,19 +167,16 @@
             app:startIconDrawable="@drawable/clarity__employee_group_line"
             app:startIconTint="@color/darkNavy">
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/etEmployeeFirstName"
-                android:layout_width="387dp"
-                android:layout_height="63dp"
-                android:hint="Employee First Name" />
+                android:hint="@string/employee_first_name"
+                style="@style/genericMaterialTextInputEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_employee_lastName"
-            style="@style/genericEditText"
-            android:layout_width="427dp"
-            android:layout_height="61dp"
+            style="@style/genericSpinner"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/employee_last_name"
             app:layout_constraintBottom_toTopOf="@id/til_managerNote"
@@ -193,11 +186,11 @@
             app:startIconDrawable="@drawable/clarity__employee_group_line"
             app:startIconTint="@color/darkNavy">
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/etEmployeeLastName"
-                android:layout_width="387dp"
-                android:layout_height="63dp"
-                android:hint="Employee Last Name" />
+                android:hint="@string/employee_last_name"
+                style="@style/genericMaterialTextInputEditText" />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,7 +201,7 @@
             android:layout_height="137dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/manager_note"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/approval_switch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -366,6 +359,7 @@
             android:id="@+id/approval_switch"
             android:layout_width="379dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:padding="8dp"
             android:text="@string/management_approval"
             android:textAlignment="center"
@@ -377,9 +371,7 @@
             app:switchMinWidth="56dp"
             app:thumbTint="@color/blueNavy"
             app:trackTint="@color/lightGray"
-            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="811dp" />
+            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,13 +14,16 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 import com.mec.mec.R
+import com.mec.mec.customers.CustomerFragmentDirections
 import com.mec.mec.databinding.FragmentMaintenanceBinding
 import com.mec.mec.model.Task
+import com.mec.mec.viewModel.AuthViewModel
 import java.text.SimpleDateFormat
 
 class MaintenanceFragment : BaseFragment() {
@@ -32,6 +35,7 @@ class MaintenanceFragment : BaseFragment() {
     private val viewModel: MaintenanceViewModel by viewModels()
     private var binding: FragmentMaintenanceBinding? = null
     private var currentTasks: List<Task> = emptyList()
+    private lateinit var authViewModel: AuthViewModel
 
     companion object {
         private const val ARG_TYPE = "type"
@@ -58,6 +62,12 @@ class MaintenanceFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
+
+        binding?.button4?.setOnClickListener {
+            authViewModel.deleteUser()
+            findNavController().navigate(MaintenanceFragmentDirections.actionCustomerFragmentToLogin())
+        }
         // Initialize RecyclerView and Adapter
         val recyclerView = binding?.rvMaintenanceList
 

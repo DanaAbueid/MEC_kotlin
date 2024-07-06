@@ -5,16 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mec.mec.api.ApiService
 import com.mec.mec.api.RetrofitInstance
+import com.mec.mec.customers.CustomerFragmentDirections
 import com.mec.mec.database.AppDatabase
 import com.mec.mec.database.DatabaseProvider
 import com.mec.mec.database.EmployeeDao
 import com.mec.mec.database.EmployeeEntity
 import com.mec.mec.databinding.FragmentEmployeeListBinding
+import com.mec.mec.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 
 
@@ -25,7 +28,7 @@ class EmployeeListFragment: BaseFragment(){
 
     private lateinit var apiService: ApiService
     private lateinit var adapter: EmployeeListAdapter
-  //  private lateinit var employeeDao: EmployeeDao
+    private lateinit var authViewModel: AuthViewModel
 
 
     override fun onCreateView(
@@ -38,7 +41,12 @@ class EmployeeListFragment: BaseFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
 
+        binding?.button4?.setOnClickListener {
+            authViewModel.deleteUser()
+            findNavController().navigate(EmployeeListFragmentDirections.actionCustomerFragmentToLogin())
+        }
         setupRecyclerView()
 
         apiService = RetrofitInstance.api

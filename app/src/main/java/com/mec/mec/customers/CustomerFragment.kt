@@ -130,8 +130,7 @@ class CustomerFragment : BaseFragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                // Optional: Live search as user types
-                // performSearch()
+                performSearch()
             }
         })
     }

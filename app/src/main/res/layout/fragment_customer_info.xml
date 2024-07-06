@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_header"
-            android:layout_width="412dp"
-            android:layout_height="212dp"
+            android:layout_width="409dp"
+            android:layout_height="164dp"
             android:src="@drawable/rounded_filled_bg"
             app:layout_constraintBottom_toTopOf="@id/til_name"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -286,6 +286,21 @@
             app:layout_constraintStart_toEndOf="@+id/til_headline"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/hugeicons__user_list" />
+
+        <Button
+            android:id="@+id/btn_tasks"
+            style="@style/backlessButton"
+            android:layout_width="148dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="247dp"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="16dp"
+            android:drawableEnd="@drawable/ep__arrow_right_bold"
+            android:text="@string/see_tasks"
+            android:textColor="@color/blueNavy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

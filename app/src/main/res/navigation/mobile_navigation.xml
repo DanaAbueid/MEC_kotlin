@@ -128,6 +128,13 @@
             app:popEnterAnim="@anim/slide_in"
             app:popExitAnim="@anim/slide_out"/>
         <action
+            android:id="@+id/action_customerFragment_to_CustomerTaskListFragment"
+            app:destination="@id/customer_Task"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
+        <action
             android:id="@+id/action_customerFragment_to_login"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in"
@@ -137,7 +144,21 @@
             app:popUpToInclusive="true"/><!-- Replace with your actual destination fragment ID -->
     </fragment>
 
+    <fragment
+        android:id="@+id/customer_Task"
+        android:name="com.mec.mec.customers.CustomerTaskListFragment"
+        android:label="customer"
+        tools:layout="@layout/fragment_customer_task_list" >
 
+
+        <action
+            android:id="@+id/action_dashboard_to_customer_list"
+            app:destination="@id/customer_list"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
 
     <fragment
         android:id="@+id/customer_add"
@@ -166,7 +187,13 @@
             android:name="customer"
             app:argType="com.mec.mec.model.Customer"
             app:nullable="false" />
-
+        <action
+            android:id="@+id/action_customerFragment_to_CustomerTaskListFragment"
+            app:destination="@id/customer_Task"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/actionCustomerFragmentToCustomerDetailFragment"
             app:destination="@id/customer_list"
@@ -228,6 +255,14 @@
                 app:nullable="false" />
         </action>
         <action
+            android:id="@+id/action_customerFragment_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/>
+        <action
             android:id="@+id/action_maintenanceFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment"
             app:enterAnim="@anim/slide_in"
@@ -264,6 +299,14 @@
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
             app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_customerFragment_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

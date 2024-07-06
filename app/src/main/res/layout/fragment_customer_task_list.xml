@@ -47,32 +47,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_approved" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"
-        android:layout_width="407dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="404dp"
+        android:layout_height="553dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         style="@style/Animation.Design.BottomSheetDialog"
-        android:layout_width="67dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="321dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="69dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="327dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="100dp"
         android:contentDescription="Add"
         android:contextClickable="false"
         android:screenReaderFocusable="false"
         android:tint="@color/white"
         android:tooltipText="add"
+        android:visibility="gone"
         app:backgroundTint="@color/blueNavy"
         app:backgroundTintMode="src_over"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,30 +94,32 @@
         style="@style/genericButton"
         android:layout_width="50dp"
         android:layout_height="48dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginStart="335dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/f7__calendar_today"
         android:clickable="true"
         android:contentDescription="@string/search"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/searchLayout"
-        android:layout_width="300dp"
-        android:layout_height="58dp"
+        android:layout_width="303dp"
+        android:layout_height="49dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="93dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="15dp"
         android:alpha="1"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/date_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/searchEditText"
@@ -152,21 +162,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button4"
-        style="@style/genericSpinner"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:drawable/ic_lock_power_off"
-        android:backgroundTint="@color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

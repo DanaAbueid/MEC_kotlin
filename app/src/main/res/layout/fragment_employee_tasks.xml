@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <include
         android:id="@+id/toolbar"
@@ -56,13 +56,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"
-        android:layout_width="408dp"
-        android:layout_height="0dp"
+        android:layout_width="404dp"
+        android:layout_height="553dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_button" />
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -91,15 +94,15 @@
         style="@style/genericButton"
         android:layout_width="50dp"
         android:layout_height="48dp"
+        android:layout_marginStart="335dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/f7__calendar_today"
         android:clickable="true"
         android:contentDescription="@string/search"
         android:focusable="true"
-        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -107,16 +110,16 @@
         android:layout_width="303dp"
         android:layout_height="49dp"
         android:layout_marginStart="18dp"
+        android:layout_marginTop="113dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
         android:alpha="1"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
         app:layout_constraintEnd_toStartOf="@+id/date_button"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/searchEditText"
