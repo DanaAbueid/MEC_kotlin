@@ -23,7 +23,8 @@ class ConfirmSignupFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
         binding?.let { bindingNotNull ->
 
             bindingNotNull.btnConfirm.setOnClickListener {

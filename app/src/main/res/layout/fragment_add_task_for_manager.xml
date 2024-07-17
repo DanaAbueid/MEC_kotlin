@@ -13,12 +13,18 @@
 
         <ImageView
             android:id="@+id/iv_header"
-            android:layout_width="405dp"
-            android:layout_height="34dp"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
-            android:src="@drawable/rounded_filled_bg"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/pic14"
             app:layout_constraintBottom_toTopOf="@id/til_Subject"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintVertical_chainStyle="packed"
             tools:ignore="MissingConstraints" />
@@ -72,7 +78,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_Subject"
             style="@style/genericSpinner"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:hint="@string/task_subject"
             app:layout_constraintBottom_toTopOf="@id/til_Details"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,16 +91,19 @@
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/etSubject"
-                style="@style/genericMaterialTextInputEditText" />
+                style="@style/genericMaterialTextInputEditText"
+                android:layout_width="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_Details"
             style="@style/genericEditText"
-            android:layout_width="404dp"
-            android:layout_height="175dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="5dp"
             android:gravity="center_vertical"
             android:hint="@string/task_details"
             app:layout_constraintBottom_toTopOf="@id/til_employeeNote"
@@ -106,7 +116,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDetails"
                 style="@style/genericMaterialTextInputEditText"
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="156dp"
                 android:gravity="center_vertical"
                 android:maxLines="100"
@@ -322,12 +332,12 @@
         <Button
             android:id="@+id/btn_add"
             style="@style/genericButton"
-            android:layout_width="218dp"
-            android:layout_height="49dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginStart="93dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="93dp"
+            android:layout_marginEnd="60dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background"
             android:text="@string/add_task"
@@ -342,9 +352,9 @@
 
         <TextView
             android:id="@+id/til_headline"
-            android:layout_width="208dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/add_a_new_task"
             android:textAlignment="center"
@@ -357,9 +367,11 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"
-            android:layout_width="379dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
             android:padding="8dp"
             android:text="@string/management_approval"
             android:textAlignment="center"

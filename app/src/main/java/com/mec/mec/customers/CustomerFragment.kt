@@ -1,4 +1,5 @@
 package com.mec.mec.customers
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,10 +26,12 @@ import com.mec.mec.employee.EmployeeListFragmentDirections
 import com.mec.mec.generic.BaseFragment
 import com.mec.mec.model.Customer
 import com.mec.mec.viewModel.AuthViewModel
+import java.util.Locale
 
 
 class CustomerFragment : BaseFragment() {
-    private var binding: FragmentCustomerBinding? = null
+    private var _binding: FragmentCustomerBinding? = null
+    private val binding get() = _binding!!
     private lateinit var customerAdapter: CustomerAdapter
     private lateinit var authViewModel: AuthViewModel
     private lateinit var progressBar: ProgressBar
@@ -44,20 +48,15 @@ class CustomerFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomerBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentCustomerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
 
-        binding?.logoutBtn?.setOnClickListener {
-            authViewModel.deleteUser()
-            findNavController().navigate(CustomerFragmentDirections.actionCustomerFragmentToLogin())
-        }
-
-
+        setupToolbar()
 
         progressBar = view.findViewById(R.id.progressBar)
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
@@ -69,8 +68,8 @@ class CustomerFragment : BaseFragment() {
         recyclerView.adapter = customerAdapter
 
         // Initialize views from binding
-        searchEditText = binding?.searchEditText ?: return
-        searchButton = binding?.searchButton ?: return
+        searchEditText = binding.searchEditText
+        searchButton = binding.searchButton
 
         setupSearchFunctionality()
 
@@ -94,14 +93,27 @@ class CustomerFragment : BaseFragment() {
             viewModel.fetchCustomers() // Fetch the data again
         }
 
-        binding?.let { bindingNotNull ->
-            bindingNotNull.fab.setOnClickListener {
-                findNavController().navigate(CustomerFragmentDirections.actionCustomerFragmentToAddCustomerFragment())
-            }
+        binding.fab.setOnClickListener {
+            findNavController().navigate(CustomerFragmentDirections.actionCustomerFragmentToAddCustomerFragment())
         }
 
         // Initial data fetch
         viewModel.fetchCustomers()
+    }
+
+    private fun setupToolbar() {
+   //     val toolbar = binding.toolbar
+
+      //  val logoutBtn = toolbar.findViewById<Button>(R.id.logoutBtn)
+        binding.toolbar.logoutBtn.setOnClickListener {
+            authViewModel.deleteUser()
+            findNavController().navigate(CustomerFragmentDirections.actionCustomerFragmentToLogin())
+        }
+
+     //   val selectLanguageBtn = toolbar.findViewById<Button>(R.id.btn_select_language)
+        binding.toolbar.btnSelectLanguage.setOnClickListener {
+            showLanguageSelectionDialog()
+        }
     }
 
     private fun navigateToCustomer(customer: Customer) {
@@ -152,8 +164,43 @@ class CustomerFragment : BaseFragment() {
         }
     }
 
+    private fun showLanguageSelectionDialog() {
+        val languages = arrayOf("English", "Arabic")
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Choose Language")
+        builder.setSingleChoiceItems(languages, -1) { dialog, which ->
+            when (which) {
+                0 -> {
+                    setLocale("en")
+                }
+                1 -> {
+                    setLocale("ar")
+                }
+            }
+            dialog.dismiss()
+            activity?.recreate() // Restart the activity to apply the language change
+        }
+        builder.show()
+    }
+
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        requireContext().createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        // Save the language preference
+        val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putString("My_Lang", languageCode)
+            apply()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 }

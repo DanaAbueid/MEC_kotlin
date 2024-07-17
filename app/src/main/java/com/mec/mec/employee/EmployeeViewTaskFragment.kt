@@ -37,6 +37,8 @@ class EmployeeViewTaskFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
         arguments?.getParcelable<Task>("task")?.let { task ->
             bindTaskDetails(task)
         }

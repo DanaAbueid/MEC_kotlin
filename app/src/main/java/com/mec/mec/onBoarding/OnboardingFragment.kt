@@ -40,9 +40,9 @@ class OnboardingFragment : BaseFragment() {
         )
 
         val descriptions = listOf(
-            "This is the first description.",
-            "This is the second description.",
-            "This is the third description."
+            "MEC the best management system in jordan!.",
+            "Manage yor customers and your employees easily.",
+            "Sign up to use the app now!."
         )
 
         val viewPager = view.findViewById<ViewPager2>(R.id.viewPager)

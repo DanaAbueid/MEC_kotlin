@@ -27,6 +27,8 @@ class AddCustomerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
         customerViewModel = ViewModelProvider(this).get(CustomerViewModel::class.java)
 
         binding?.let { bindingNotNull ->

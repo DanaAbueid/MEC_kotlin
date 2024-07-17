@@ -71,7 +71,7 @@
     <string name="description">Description</string>
   <string name="headline">Headline</string>
     <string name="add">Add</string>
-  <string name="add_customer">Add Customer\n</string>
+  <string name="add_customer">Add Customer</string>
   <string name="location">Location</string>
   <string name="elevator_type">Elevator Type</string>
   <string name="Elevator_Control_Panel">"Elevator Control Panel "</string>
@@ -103,5 +103,9 @@
     <string name="signup_confirmed_please_login_to_contenue">Signup Confirmed please login to continue</string>
     <string name="employee_note">Employee Note</string>
     <string name="see_tasks">See Tasks</string>
+    <string name="task">Task</string>
+  <string name="employee_notes">Employee Notes</string>
+  <string name="last_name">Last Name</string>
+  <string name="first_name">First Name</string>
 
 </resources>

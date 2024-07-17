@@ -41,6 +41,9 @@ class EmployeeListFragment: BaseFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
         authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
 
         binding?.button4?.setOnClickListener {

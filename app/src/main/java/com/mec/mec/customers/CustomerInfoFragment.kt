@@ -32,7 +32,8 @@ class CustomerInfoFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
         // Retrieve customer from arguments
         arguments?.getParcelable<Customer>("customer")?.let { receivedCustomer ->
             customer = receivedCustomer
@@ -46,6 +47,12 @@ class CustomerInfoFragment : BaseFragment() {
         binding.buttonDelete.setOnClickListener {
             customer?.let { customer ->
                 customerViewModel.deleteCustomer(customer.customerId)
+            }
+        }
+
+        binding.btnTasks.setOnClickListener{
+            customer?.let { customer ->
+                findNavController().navigate(CustomerInfoFragmentDirections.actionCustomerFragmentToCustomerTaskListFragment(customer.customerId))
             }
         }
 

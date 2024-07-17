@@ -23,7 +23,7 @@ import retrofit2.http.Url
 
 interface ApiService {
 
-    @GET("customersManagement/customers")
+    @GET("customersManagement/customersUpdated")
     suspend fun getCustomers(): List<Customer>
 
     @GET("maintenance/task/date")

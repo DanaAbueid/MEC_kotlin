@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    tools:ignore="VisualLintBounds">
+    android:background="@color/white">
 
     <include
         android:id="@+id/toolbar"
@@ -18,19 +17,18 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchLayout"
         android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="1dp"
+            android:layout_height="match_parent"
             app:tabIndicatorColor="@color/darkNavy"
+            app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/darkNavy"
             app:tabTextColor="@color/blueNavy">
 
@@ -57,51 +55,77 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Done" />
-
+                android:text="@string/done" />
         </com.google.android.material.tabs.TabLayout>
     </HorizontalScrollView>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"
-        android:layout_width="408dp"
-        android:layout_height="542dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:paddingHorizontal="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_button" />
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:layout_width="69dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="327dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="Add"
+        android:contextClickable="false"
+        android:screenReaderFocusable="false"
+        android:tint="@color/white"
+        android:tooltipText="add"
+        android:visibility="gone"
+        app:backgroundTint="@color/blueNavy"
+        app:backgroundTintMode="src_over"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/white"
+        app:srcCompat="@drawable/material_symbols__add" />
 
     <Button
         android:id="@+id/date_button"
         style="@style/genericButton"
-        android:layout_width="50dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="335dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/f7__calendar_today"
         android:clickable="true"
         android:contentDescription="@string/search"
-        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/searchLayout"
-        android:layout_width="303dp"
-        android:layout_height="49dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="95dp"
         android:alpha="1"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_maintenance_list"
-        app:layout_constraintEnd_toStartOf="@+id/date_button"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/searchEditText"
@@ -109,7 +133,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="search Task"
+            android:hint="@string/search_customer"
             android:importantForAutofill="no"
             android:inputType="text"
             android:minHeight="48dp"
@@ -145,13 +169,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <Button
-        android:id="@+id/logoutBtn"
+        android:id="@+id/button4"
         style="@style/genericSpinner"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="276dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="91dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="100dp"
         android:background="@android:drawable/ic_lock_power_off"
         android:backgroundTint="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

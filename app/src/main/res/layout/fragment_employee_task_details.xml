@@ -52,8 +52,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_details"
             style="@style/genericEditText"
-            android:layout_width="404dp"
-            android:layout_height="175dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
             android:hint="@string/task_details"
@@ -68,11 +68,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/details_edit_text"
                 style="@style/genericMaterialTextInputEditText"
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="156dp"
                 android:inputType="text|textMultiLine"
                 android:maxLines="100"
-                android:text="Task"
+                android:text="@string/task"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/darkNavy"
@@ -104,7 +104,7 @@
             android:id="@+id/til_employee_firstName"
             style="@style/genericEditText"
             android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Employee Notes"
+            android:hint="@string/employee_notes"
             app:layout_constraintBottom_toTopOf="@id/til_employee_lastName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,8 +142,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_manager_note"
             style="@style/genericEditText"
-            android:layout_width="408dp"
-            android:layout_height="137dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/manager_note"
             android:visibility="visible"
@@ -154,17 +154,16 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/manager_note_edit_text"
                 style="@style/genericMaterialTextInputEditText"
-                android:layout_width="376dp"
-                android:layout_height="122dp"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="122dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button_edit_task"
             style="@style/genericButton"
-            android:layout_width="218dp"
-            android:layout_height="49dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginStart="93dp"
             android:layout_marginTop="30dp"
@@ -198,23 +197,27 @@
 
         <TextView
             android:id="@+id/tv_show_date"
-            android:layout_width="375dp"
-            android:layout_height="29dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="69dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/done"
             android:textAlignment="center"
             android:textColor="@color/darkNavy"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:visibility="visible"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="69dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"
-            android:layout_width="379dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
             android:padding="8dp"
             android:text="@string/management_approval"
             android:textAlignment="center"

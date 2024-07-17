@@ -14,52 +14,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout2"
-        android:layout_width="409dp"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/darkNavy"
-        app:tabSelectedTextColor="@color/darkNavy"
-        app:tabTextColor="@color/blueNavy">
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchLayout"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all" />
+            android:layout_height="match_parent"
+            app:tabIndicatorColor="@color/darkNavy"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/darkNavy"
+            app:tabTextColor="@color/blueNavy">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/today" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/approved" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/not_approved" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/approved" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Done" />
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/not_approved" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/done" />
+        </com.google.android.material.tabs.TabLayout>
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_maintenance_list"
-        android:layout_width="404dp"
-        android:layout_height="553dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,8 +98,8 @@
     <Button
         android:id="@+id/date_button"
         style="@style/genericButton"
-        android:layout_width="50dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="335dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="26dp"
@@ -107,17 +113,17 @@
 
     <LinearLayout
         android:id="@+id/searchLayout"
-        android:layout_width="303dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="90dp"
         android:alpha="1"
         android:background="@drawable/search_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/date_button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

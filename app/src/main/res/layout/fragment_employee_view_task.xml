@@ -54,7 +54,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_Details"
             style="@style/genericEditText"
-            android:layout_width="403dp"
+            android:layout_width="match_parent"
             android:layout_height="135dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_vertical"
@@ -138,7 +138,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_managerNote"
             style="@style/genericEditText"
-            android:layout_width="408dp"
+            android:layout_width="match_parent"
             android:layout_height="137dp"
             android:layout_marginTop="@dimen/_10sdp"
             android:hint="@string/manager_note"
@@ -152,8 +152,7 @@
                 android:id="@+id/managerNoteEditText"
                 style="@style/genericMaterialTextInputEditText"
                 android:layout_width="376dp"
-                android:layout_height="122dp"
-                />
+                android:layout_height="122dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -264,8 +263,8 @@
         <Button
             android:id="@+id/button_edit_task"
             style="@style/genericButton"
-            android:layout_width="218dp"
-            android:layout_height="49dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginStart="93dp"
             android:layout_marginTop="30dp"
@@ -284,8 +283,8 @@
 
         <TextView
             android:id="@+id/til_headline"
-            android:layout_width="208dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/employee_task"
@@ -299,8 +298,8 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="375dp"
-            android:layout_height="29dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="16dp"
@@ -317,8 +316,11 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/approval_switch"
-            android:layout_width="379dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
             android:padding="8dp"
             android:text="@string/management_approval"
             android:textAlignment="center"
@@ -330,9 +332,7 @@
             app:switchMinWidth="56dp"
             app:thumbTint="@color/blueNavy"
             app:trackTint="@color/lightGray"
-            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="811dp" />
+            tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

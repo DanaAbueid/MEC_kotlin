@@ -14,18 +14,18 @@
 
     <ImageView
         android:id="@+id/settingPic"
-        android:layout_width="401dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="0dp"
+        android:layout_height="189dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pic1" />
+        app:srcCompat="@drawable/login" />
 
     <TextView
         android:id="@+id/welcomeText"
-        android:layout_width="370dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:text="@string/welcome"
         android:textAlignment="center"
@@ -38,7 +38,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_username"
         style="@style/genericEditText"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
@@ -114,6 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="@string/create_account"
         android:textColor="@color/blueNavy"
         android:textSize="16sp"

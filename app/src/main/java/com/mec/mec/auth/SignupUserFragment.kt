@@ -34,6 +34,9 @@ class SignupUserFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
+
         binding.buttonAdd.setOnClickListener {
             val firstName = binding.tilName.editText?.text.toString()
             val lastName = binding.tilLastName.editText?.text.toString()
@@ -55,8 +58,6 @@ class SignupUserFragment: BaseFragment() {
         }
 
         authViewModel.authResponse.observe(viewLifecycleOwner, Observer {
-            // Handle successful sign-up response
-            // Navigate to another fragment or show a success message
             findNavController().navigate(SignupUserFragmentDirections.actionSignupFragmentToConfirm())
         })
 

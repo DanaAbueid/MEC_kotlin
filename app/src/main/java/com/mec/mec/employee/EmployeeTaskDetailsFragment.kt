@@ -18,10 +18,10 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
     private val taskViewModel: TaskViewModel by viewModels()
 
     private val binding get() = _binding!!
-    override fun isLoggedin() = false
-    var managerNote = ""
-    var note = ""
+
     var taskID = -1L
+
+    override fun isLoggedin() = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,28 +33,38 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
+
         arguments?.getParcelable<Task>("task")?.let { task ->
             bindTaskDetails(task)
         }
-        note = binding.employeeFirstNameEditText.text.toString()
-        managerNote = binding.managerNoteEditText.text.toString()
+
         binding.buttonEditTask.setOnClickListener {
             // Read current values from EditText fields
             val currentNote = binding.employeeFirstNameEditText.text.toString()
             val currentManagerNote = binding.managerNoteEditText.text.toString()
 
-            // Update the notes using ViewModel methods
-            taskViewModel.editEmployeeNote(UpdateNotes(taskID, currentNote))
-            taskViewModel.editManagerNote(UpdateNotes(taskID, currentManagerNote))
-            taskViewModel.editTaskApproval(UpdateApproval(taskID, binding.approvalSwitch.isChecked))
+            // Ensure fields are not empty before updating ViewModel
+            if (currentNote.isNotEmpty() && currentManagerNote.isNotEmpty()) {
+                taskViewModel.editEmployeeNote(UpdateNotes(taskID, currentNote))
+                taskViewModel.editManagerNote(UpdateNotes(taskID, currentManagerNote))
+                taskViewModel.editTaskApproval(UpdateApproval(taskID, binding.approvalSwitch.isChecked))
+            } else {
+                Toast.makeText(context, "Notes cannot be empty.", Toast.LENGTH_SHORT).show()
+            }
         }
 
+        observeViewModel()
+    }
 
+    private fun observeViewModel() {
         taskViewModel.editManagerNoteResponse.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(context, "Task manager note updated successfully.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Failed to mark task as done.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Failed to update task manager note.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -62,12 +72,12 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
             if (isSuccess) {
                 Toast.makeText(context, "Task employee note updated successfully.", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, "Failed to mark task as done.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Failed to update task employee note.", Toast.LENGTH_SHORT).show()
             }
         }
 
         taskViewModel.error.observe(viewLifecycleOwner) { error ->
-            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -76,17 +86,15 @@ class EmployeeTaskDetailsFragment : BaseFragment() {
         binding.tvShowDate.text = dateTimeText
         binding.subjectEditText.setText(task.subject)
         binding.detailsEditText.setText(task.details)
-        binding.customerNameEditText.setText(task.customer.customerName)
-        binding.employeeFirstNameEditText.setText(task.employeeNotes)
-     //   binding.employeeLastNameEditText.setText(task.employeeLastName)
-        binding.managerNoteEditText.setText(task.managerNotes)
+        binding.customerNameEditText.setText(task.customer?.customerName ?: "")
+        binding.employeeFirstNameEditText.setText(task.employeeNotes ?: "")
+        binding.managerNoteEditText.setText(task.managerNotes ?: "")
         binding.approvalSwitch.isChecked = task.approved
         taskID = task.taskId
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null // Clean up references to avoid memory leaks
     }
 }

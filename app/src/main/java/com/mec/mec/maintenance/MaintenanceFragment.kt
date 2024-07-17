@@ -2,9 +2,11 @@ package com.mec.mec.maintenance
 
 import com.mec.mec.generic.BaseFragment
 import android.app.DatePickerDialog
+import android.content.ContentValues
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +20,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
-import java.util.*
 import com.mec.mec.R
-import com.mec.mec.customers.CustomerFragmentDirections
+import java.util.*
 import com.mec.mec.databinding.FragmentMaintenanceBinding
 import com.mec.mec.model.Task
 import com.mec.mec.viewModel.AuthViewModel
@@ -29,13 +30,17 @@ import java.text.SimpleDateFormat
 class MaintenanceFragment : BaseFragment() {
 
     private lateinit var taskAdapter: TaskAdapter
-    private lateinit var progressBar: ProgressBar
-    private lateinit var searchEditText: EditText
-    private lateinit var searchButton: ImageButton
+    private var progressBar: ProgressBar? = null
+    private var searchEditText: EditText? = null
+    private var searchButton: ImageButton? = null
     private val viewModel: MaintenanceViewModel by viewModels()
     private var binding: FragmentMaintenanceBinding? = null
     private var currentTasks: List<Task> = emptyList()
     private lateinit var authViewModel: AuthViewModel
+    private var isDateSelected = false
+    private var selectedDate: String? = null
+
+
 
     companion object {
         private const val ARG_TYPE = "type"
@@ -62,15 +67,17 @@ class MaintenanceFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.toolbar?.btnSelectLanguage?.visibility = View.GONE
+        binding?.toolbar?.logoutBtn?.visibility = View.GONE
+
         authViewModel = ViewModelProvider(requireActivity()).get(AuthViewModel::class.java)
 
         binding?.button4?.setOnClickListener {
             authViewModel.deleteUser()
             findNavController().navigate(MaintenanceFragmentDirections.actionCustomerFragmentToLogin())
         }
-        // Initialize RecyclerView and Adapter
-        val recyclerView = binding?.rvMaintenanceList
 
+        val recyclerView = binding?.rvMaintenanceList
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         taskAdapter = TaskAdapter(emptyList()) { task ->
             val action = MaintenanceFragmentDirections.actionMaintenanceFragmentToEmployeeTaskFragment(task)
@@ -84,32 +91,28 @@ class MaintenanceFragment : BaseFragment() {
             }
         }
 
-        // Initialize ProgressBar
         progressBar = binding?.progressBar ?: throw IllegalStateException("Progress bar not found in layout.")
-
-        // Initialize Search EditText and Search Button
         searchEditText = binding?.searchEditText ?: throw IllegalStateException("Search EditText not found in layout.")
         searchButton = binding?.searchButton ?: throw IllegalStateException("Search Button not found in layout.")
         setupSearchFunctionality()
 
-        // Setup Date Button click listener
-        binding?.dateButton?.setOnClickListener {
-            showDatePickerDialog()
-        }
+    setupDateButtonListener()
 
-        // Setup TabLayout listener
         binding?.tabLayout2?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
-                    // Hide or show the date button based on the selected tab
-                    if (it.position == 2 || it.position == 3) {
-                        binding?.dateButton?.visibility = View.GONE
+                    if (it.position == 0 || it.position == 2 || it.position == 3 || it.position == 4) {
+                        binding?.dateButton?.setBackgroundResource(R.drawable.white_button)
                     } else {
-                        binding?.dateButton?.visibility = View.VISIBLE
+                        binding?.dateButton?.setBackgroundResource(R.drawable.f7__calendar_today)
+                    }
+                    if (it.position == 4) {
+                        taskAdapter.updateTasks(currentTasks.filter { it.done }) // Done tasks
+
+                    } else {
+                        fetchDataForTab(it.position)
                     }
 
-                    // Fetch data for the selected tab
-                    fetchDataForTab(it.position)
                 }
             }
 
@@ -117,53 +120,37 @@ class MaintenanceFragment : BaseFragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        // Initial fetch based on the default selected tab
         fetchDataForTab(binding?.tabLayout2?.selectedTabPosition ?: 0)
     }
 
-    private fun fetchDataForTab(tabPosition: Int) {
-        // Clear the current tasks in the RecyclerView
+    private fun fetchDataForTab(tabPosition: Int, selectedDate: String? = null) {
         taskAdapter.updateTasks(emptyList())
         binding?.rvMaintenanceList?.visibility = View.GONE
 
         val url = when (tabPosition) {
-            0 -> {
-                // Fetch tasks for selected date (current date)
-                "http://34.234.65.167:8080/api/v1/maintenance/AllTasks"
-            }
+            0 -> "http://34.234.65.167:8080/api/v1/maintenance/AllFilteredTasks"
             1 -> {
-                // Fetch tasks for selected date (current date)
-                val date = getCurrentDate()
-                "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$date"
+                val date = selectedDate ?: getCurrentDate()
+                Log.d(ContentValues.TAG, "date: $date")
+                "http://34.234.65.167:8080/api/v1/maintenance/taskUpdated/date?date=$date"
             }
-            2 -> {
-                // Fetch approved tasks
-                "http://34.234.65.167:8080/api/v1/maintenance/task/getApprovalList?bool=true"
-            }
-            3 -> {
-                // Fetch not approved tasks
-                "http://34.234.65.167:8080/api/v1/maintenance/task/getApprovalList?bool=false"
-            }
+            2 -> "http://34.234.65.167:8080/api/v1/maintenance/task/getUpdatedApprovalList?bool=true"
+            3 -> "http://34.234.65.167:8080/api/v1/maintenance/task/getUpdatedApprovalList?bool=false"
+
             else -> throw IllegalStateException("Unexpected tab position $tabPosition")
         }
 
-        // Show ProgressBar while fetching data
-        progressBar.visibility = View.VISIBLE
+        progressBar?.visibility = View.VISIBLE
 
         viewModel.fetchTasks(url)
 
-        // Observe LiveData for tasks
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            // Hide ProgressBar when data is loaded
-            progressBar.visibility = View.GONE
-
+            progressBar?.visibility = View.GONE
             if (tasks.isEmpty()) {
                 binding?.rvMaintenanceList?.visibility = View.GONE
                 Toast.makeText(requireContext(), "No tasks available.", Toast.LENGTH_SHORT).show()
             } else {
-                // Store current tasks for search filtering
                 currentTasks = tasks
-                // Update RecyclerView with new data
                 taskAdapter.updateTasks(tasks)
                 binding?.rvMaintenanceList?.visibility = View.VISIBLE
             }
@@ -171,15 +158,45 @@ class MaintenanceFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
-            // Hide ProgressBar in case of an error
-            progressBar.visibility = View.GONE
+            progressBar?.visibility = View.GONE
         }
     }
 
+    private fun setupDateButtonListener() {
+        binding?.dateButton?.setOnClickListener {
+            toggleDateFilter()
+        }
+    }
+
+    private fun toggleDateFilter() {
+        if (isDateSelected) {
+            // Reset background image and clear selected date
+            binding?.dateButton?.setBackgroundResource(R.drawable.f7__calendar_today)
+             selectedDate = null
+            // Reload original tasks based on tab selection
+            fetchDataForTab(binding?.tabLayout2?.selectedTabPosition ?: 0)
+        } else {
+            // Change background image and show date picker dialog
+            binding?.dateButton?.setBackgroundResource(R.drawable.ic__twotone_refresh)
+            showDatePickerDialog()
+        }
+        // Toggle date selection state
+        isDateSelected = !isDateSelected
+    }
+
     private fun getCurrentDate(): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale("en"))
         return sdf.format(Date())
     }
+
+    private fun convertArabicDateToEnglish(arabicDate: String): String {
+        val arabicFormat = SimpleDateFormat("yyyy-MM-dd", Locale("ar"))
+        val englishFormat = SimpleDateFormat("yyyy-MM-dd", Locale("en"))
+
+        val date = arabicFormat.parse(arabicDate)
+        return englishFormat.format(date)
+    }
+
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
@@ -189,10 +206,10 @@ class MaintenanceFragment : BaseFragment() {
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            R.style.CustomDatePickerDialogTheme, // Apply the custom theme here
-            { _, year, month, dayOfMonth ->
-                val selectedDate = "${year}-${month + 1}-${dayOfMonth}" // Adjust month +1 because DatePicker month starts from 0
-                updateUrlWithDate(selectedDate)
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDateArabic = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+                val selectedDateEnglish = convertArabicDateToEnglish(selectedDateArabic)
+                updateUrlWithDate(selectedDateEnglish)
             },
             year, month, day
         )
@@ -200,40 +217,14 @@ class MaintenanceFragment : BaseFragment() {
     }
 
     private fun updateUrlWithDate(selectedDate: String) {
-        // Update the API URL with the selected date
         val tabPosition = binding?.tabLayout2?.selectedTabPosition ?: 0
-
-        val url = when (tabPosition) {
-            0 -> {
-                // Fetch tasks for selected date (current date)
-                "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$selectedDate"
-            }
-            1 -> {
-                // Fetch tasks for selected date (current date)
-                "http://34.234.65.167:8080/api/v1/maintenance/task/date?date=$selectedDate"
-            }
-            2 -> {
-                // Fetch approved tasks
-                "http://34.234.65.167:8080/api/v1/maintenance/task/getApprovalList?bool=true"
-            }
-            3 -> {
-                // Fetch not approved tasks
-                "http://34.234.65.167:8080/api/v1/maintenance/task/getApprovalList?bool=false"
-            }
-            else -> throw IllegalStateException("Unexpected tab position $tabPosition")
-        }
-
-        // Fetch data based on updated URL
-        fetchDataForTab(tabPosition)
+        fetchDataForTab(tabPosition, selectedDate)
     }
 
     private fun setupSearchFunctionality() {
-        searchButton.setOnClickListener {
-            performSearch()
-        }
+        searchButton?.setOnClickListener { performSearch() }
 
-        // Optional: Trigger search on keyboard "Done" press
-        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+        searchEditText?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 performSearch()
                 true
@@ -242,40 +233,36 @@ class MaintenanceFragment : BaseFragment() {
             }
         }
 
-        // Optional: Live search as user types
-        searchEditText.addTextChangedListener(object : TextWatcher {
+        searchEditText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                // Perform search with current text after a short delay (if needed)
-                 performSearch()
-            }
+            override fun afterTextChanged(s: Editable?) { performSearch() }
         })
     }
 
     private fun performSearch() {
-        val query = searchEditText.text.toString().trim()
-
+        val query = searchEditText?.text.toString().trim()
         if (query.isNotEmpty()) {
-            // Filter tasks based on the search query
             val filteredTasks = currentTasks.filter { task ->
                 task.subject.contains(query, ignoreCase = true) ||
                         task.details.contains(query, ignoreCase = true) ||
                         task.customer.customerName.contains(query, ignoreCase = true)
             }
-
-            // Update RecyclerView with filtered tasks
             taskAdapter.updateTasks(filteredTasks)
         } else {
-            // If query is empty, show all tasks
             taskAdapter.updateTasks(currentTasks)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null // Clean up references to avoid memory leaks
+        binding = null
+        searchEditText?.setOnEditorActionListener(null)
+        searchEditText?.removeTextChangedListener(null)
+        searchButton?.setOnClickListener(null)
+        progressBar = null
+        searchEditText = null
+        searchButton = null
+
     }
 }

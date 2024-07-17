@@ -9,6 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.mec.mec.auth.LoginFragment"
         android:label="fragment_home"
+        app:popUpToInclusive="true"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_signupUpUserFragment"
@@ -127,13 +128,7 @@
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
             app:popExitAnim="@anim/slide_out"/>
-        <action
-            android:id="@+id/action_customerFragment_to_CustomerTaskListFragment"
-            app:destination="@id/customer_Task"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
-            app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out"/>
+
         <action
             android:id="@+id/action_customerFragment_to_login"
             app:destination="@id/loginFragment"
@@ -149,11 +144,13 @@
         android:name="com.mec.mec.customers.CustomerTaskListFragment"
         android:label="customer"
         tools:layout="@layout/fragment_customer_task_list" >
-
+        <argument
+            android:name="customerId"
+            app:argType="long" />
 
         <action
-            android:id="@+id/action_dashboard_to_customer_list"
-            app:destination="@id/customer_list"
+            android:id="@+id/action_list_to_task"
+            app:destination="@id/employee_task_details"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/slide_in"
@@ -187,6 +184,7 @@
             android:name="customer"
             app:argType="com.mec.mec.model.Customer"
             app:nullable="false" />
+
         <action
             android:id="@+id/action_customerFragment_to_CustomerTaskListFragment"
             app:destination="@id/customer_Task"
